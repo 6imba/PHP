@@ -1,0 +1,13 @@
+controll file
+
+https://www.w3schools.com/php/php_mysql_prepared_statements.asp
+https://www.php.net/manual/en/mysqli.quickstart.prepared-statements.php
+https://supunkavinda.blog/php/mysqli-prepared-statements
+https://websitebeaver.com/prepared-statements-in-php-mysqli-to-prevent-sql-injection
+https://www.tutorialrepublic.com/php-tutorial/php-mysql-prepared-statements.php
+https://supunkavinda.blog/php/prepared-statements
+
+The prepared statement execution consists of two stages: prepare and execute.
+INSERT prepared once, executed multiple times
+
+what is difference between encryption and hashing???

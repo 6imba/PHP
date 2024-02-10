@@ -1,0 +1,10 @@
+//here complete url is : http://localhost/Root%20Folder%20of%20PHP%20Practise/2.Object%20Oriented%20PHP/8.Project/$_Server.php
+$_SERVER['HTTP_HOST'] = 	//Returns the Host header from the current request : localhost
+$_SERVER['REQUEST_URI'] =  //will give you : /Root%20Folder%20of%20PHP%20Practise/2.Object%20Oriented%20PHP/8.Project/$_Server.php
+
+if(strpos($_SERVER['REQUEST_URI'], "8.Project")!==false){
+echo "Url of this file contain '8.Project' which means location of this current file somewhere contain '8.Project'";
+}
+?>
+
+Therefore, url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']

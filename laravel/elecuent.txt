@@ -1,0 +1,4 @@
+eloquent is a convienent way to work with database and when we created our model we inheritate all of these eloquent function to make it super easy to work with our data.
+no need to write huge sql code as in past just use eloquent.
+
+eg : Post::find() // it only find the item using primary id

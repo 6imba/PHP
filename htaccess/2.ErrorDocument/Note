@@ -1,0 +1,14 @@
+If link not found go to userfriendly error page
+like http://localhost/RootPHP/htaccess/2.ErrorDocument/1.file/apple.html
+as we dont have apple.html file it give following error which is is kind of irritating for normal user :
+Object not found!
+The requested URL was not found on this server. If you entered the URL manually please check your spelling and try again.
+
+If you think this is a server error, please contact the webmaster.
+
+Error 404
+localhost
+Apache/2.4.46 (Win64) OpenSSL/1.1.1g PHP/7.4.9
+
+
+Therefore we use ErrorDocument

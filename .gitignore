@@ -23,3 +23,40 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+# Ignore vendor directory
+/vendor
+
+# Ignore node_modules directory
+/node_modules
+
+# Ignore storage directory
+/storage
+
+# Ignore environment file
+.env
+
+# Ignore database files
+/database/*.sqlite
+/database/*.sqlite3
+/database/*.db
+
+# Ignore IDE-specific files
+/.idea
+/.vscode
+
+# Ignore Homestead.yaml file
+Homestead.yaml
+
+# Ignore Homestead.json file
+Homestead.json
+
+# Ignore mix-manifest.json file
+mix-manifest.json
+
+# Ignore compiled output
+/public/js
+/public/css
+
+# Ignore PHPStorm Meta Data
+/.phpstorm.meta.php

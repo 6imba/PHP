@@ -1,0 +1,22 @@
+PagsController.php :
+class PagesController extends Controller{
+    public function getAbout(){
+        $fname = 'Amir';
+        $lname = 'Shrestha';
+        $fullname = $fname.' '.$lname;
+        $email = $fullname.'55@gmail.com';
+        $data = [
+                "name" => $fullname,
+                "mail" => $email 
+                ];
+        return view('pages/about')->with('data',$data);
+        // return view('pages/about')->withName($fullname);//shortcut version not working
+    }
+}
+
+
+about.blade.php :
+    <body class="antialiased">
+        <h1 style="text-align: center;">About : {{$data['name']}}</h1>
+        <h1 style="text-align: center;">Email : {{$data['mail']}}</h1>
+    </body>

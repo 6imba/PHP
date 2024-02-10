@@ -1,0 +1,3 @@
+echo in laravel ==> {{ }}
+comment/just execute not echo in laravel ==> {!!  !!}
+in blade

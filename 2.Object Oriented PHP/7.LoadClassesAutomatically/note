@@ -1,0 +1,36 @@
+include_class :
+
+// include 'Person.class.php';   //incase Person.php and Person.class.php are insde same includes_directory
+
+//include '../Person.class.php';   //incase Person.php is insde includes_directory and Person.class.php is one_level up (outside includes_directory but inside 7.LoadClassAutomatically)
+
+//include '../../Person.class.php'; //two_level up (inside 2.Object Orented Programming)
+
+// include '../classes/Person.class.php';
+
+autoload_class:
+incase Person.php is inside includes_directory and Person.class.php is in another classes_directory but both includes_and_classes are sub_folder of 7.LoadClassAutomatically
+
+// function __autoload($class){
+//   require $class.".class.php";
+// } //incase Person.php and Person.class.php are insde same directory
+
+
+// spl_autoload_register('myAutoLoader'); 
+// //builtin function in php which allow us to automatically load/pull classes as soon as we instantiate a respective class inside our document.
+
+// function myAutoLoader($className){
+//   $path = "../classes/";
+//   $extension = ".class.php";
+//   $fullPath = $path.$className.$extension;
+//   echo $fullPath.'<br>';
+//   include_once $fullPath;
+// }
+
+
+// spl_autoload_register(fn($className)=> include "../classes/{$className}.class.php");
+
+../ means go one directory back
+
+
+when ever class object is created or called autoloader runs, during inheritance also

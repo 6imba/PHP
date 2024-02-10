@@ -1,0 +1,78 @@
+entype="" ==> It is the attribute used in form that specifies how the form-data should be encoded when submitting it to the server.
+	      The enctype attribute can be used only if method="post".	
+e.g : <form action="***" method="POST" entype="multipart/form-data" >
+HTML forms provide three methods of encoding.
+1.application/x-www-form-urlencoded (the default)
+2.multipart/form-data
+3.text/plain
+
+
+$_FILES["choosenfilename"] ==> super_global_variable which gets all the information of the selected file.
+e.g:
+<form action="upload_file.php" method="post" enctype="multipart/form-data">
+<input type="file" name="selectedfile" id="file" />
+<input type="submit" name="submit" value="Submit" />
+</form>
+action="upload_file.php"
+<?php
+if ($_FILES["selectedfile"] > 0)//if file is selected and there is any info about that file named as selectedfile..
+  {
+  echo "You have selected a file to upload";
+  }
+?>
+
+
+when we  write print_r($filedetial); and upload the file it give  following output:
+Array ( [name] => robben.jpg [type] => image/jpeg [tmp_name] => C:\xampp\tmp\php172.tmp [error] => 0 [size] => 395539 )
+[tmp_name] => C:\xampp\tmp\php172.tmp ---- this is tmeporary name as ue havent set the location where the file need to be uploaded
+[error] => 0 --- means no error
+
+
+explode() : The explode() function breaks a string into an array.
+#CODE
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$str = "Hello world. It's a beautiful day.";
+print_r (explode(" ",$str));
+echo "<br>";
+print_r (explode(".",$str));
+echo "<br>";
+print_r (explode("'",$str));
+echo "<br>";
+print_r (explode("",$str));
+?> 
+</body>
+</html>
+OUTPUT:
+Array ( [0] => Hello [1] => world. [2] => It's [3] => a [4] => beautiful [5] => day. )
+Array ( [0] => Hello world [1] => It's a beautiful day [2] => )
+Array ( [0] => Hello world. It [1] => s a beautiful day. )
+Warning: explode(): Empty delimiter in /wwwqJMAyn on line 12
+
+
+current() and end();	
+current(variable holding array) ==> returns the value of the current element in an array					
+end(variable holding array) ==> returns the last element in an array
+#CODE
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$people = array("Peter", "Joe", "Glenn", "Cleveland");
+$manxe = array("hari","shyam","Peter");
+echo ($people['2']) . "<br>";
+echo current($people) . "<br>";
+echo current($manxe) . "<br>";
+echo end($people);
+?>
+</body>
+</html>
+OUTPUT:
+Glenn
+Peter
+hari
+Cleveland
+
+

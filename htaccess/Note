@@ -1,0 +1,105 @@
+Regular Url when HTTP GET REQUEST
+url1 : http://www.example.com/show_product.php?cat_id=111&product_id=7
+http://www.example.com <==> Domain name
+show_product.php <==> Phpfile/function
+cat_id=111&product_id=7 <==> query string (variable of GET request = value of variable of GET request)
+url1 is a regular url where all variable related with data gets concatinate with url when we sent HTTP GET REQUEST
+
+Clean Url
+url1 : http://www.example.com/show_product/111/7
+search engines like selective urls
+SEO friendly url / clean url / selective url //meaningful url/ memorizable url
+
+
+.htaccess
+
+Normally we get Regular_Url with HTTP_GET_REQUEST. So how to achieve Clean_Url ?
+1. First make sure that show mod_rewrite module is enabled. So where to check it? In Apache server.
+* Open XAMPP
+* Start Apache
+* Click on config button
+* Click on Apache(httpd.conf) //This is configuration file related to httpd
+* Ctrl + F search box appear
+*Type rewrite 
+LoadModule rewrite_module modules/mod_rewrite.so 
+is marked
+here this means rewrite_module modules and mod_rewrite modules is enabled/activated
+if #LoadModule rewrite_module modules/mod_rewrite.so is marked
+there as comment(#) before the statement that would be considered as disabled or diactivated
+So just remove # to activate it
+
+So Now how to rewitre url?
+To do that we need one file called named as .htaccess
+You can simply create file and name t as .htaccess but sometime Windows doesnt recoznized this .htaccess file so you need to name it inside "" i.e ".htaccess".
+This ".htaccess" means that double quotes "" that we are using enforce Window to create a type of file that we want. So that Window dont stop us.
+When you upload file into server and see its directory you cannot see this .htaccess file as it hidden by default so you need to make hidden file show inorder to see it.
+
+
+Now,
+1.First instruction that we write inside .htaccess is <==> RewriteEngine On <==> Instruct Rewrite Enigine so that its On
+1. RewriteEngine On
+2. RewriteBase / This specifies the starting_path of url that we are trying to rewrite.
+(which means root_directory ==> place/dir inside web server where we upload our files ==> dir inside web server where our .htaccess is located)
+2. RewriteBase /RootPHP/htaccess/5.Rewrite_Module/
+
+Note:
+if not proper sysntax ==>RewriteBase / RootPHP/htaccess/5.Rewrite_Module/ ==> space beforeRootPHP
+or wrong dir ==> RewriteBase / apple/htaccess/5.Rewrite_Module/ ==> no any dir as apple
+then it gives (Server error! Error 500)
+
+Server error!
+The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there was an error in a CGI script.
+
+If you think this is a server error, please contact the webmaster.
+
+Error 500
+localhost
+Apache/2.4.46 (Win64) OpenSSL/1.1.1g PHP/7.4.9
+
+
+
+Now Some rules,
+If user passed random_path or text after domain name like:
+http://localhost/RootPHP/htaccess/5.Rewrite_Module/apple/html
+http://localhost/RootPHP/htaccess/5.Rewrite_Module/asdascacsac.aca'c;ack sajcnas
+Domain : http://localhost/RootPHP/htaccess/5.Rewrite_Module
+It gives error : ERROR 404
+
+Here this random url is not acceptable o how to make it accetpable ?
+
+So if we dont want our page to show error instead we want our page to redirect 
+We need to write rule.
+i.e
+
+RewriteRule ^(.*)$
+regulate_expression ==> ^(.*)$ 
+here :
+^(carret) means regulate_expression start 
+$(doller) means regulate_expression ends
+() ==> parenthesis ==> mean you are talking about more than one expressions 
+. ==> dot/period ==> means any character/special_character (123mqnsaas&*(*^$##& etc...............))
+* ==> astric ==> means 0 or more ==> means any character/special_character may_not_come(0) or come_many_time(1 time, 2 time, many time)
+
+Now where are we applying this rule ? ans => inside index file:
+index.php file ==> file that get loaded automatically even if we didnot specify it in browser 
+i.e
+RewriteRule ^(.*)$ index.php
+
+Now define a parameter after index.php,
+RewriteRule ^(.*)$ index.php?url
+RewriteRule ^(.*)$ index.php?link
+RewriteRule ^(.*)$ index.php?somethingelse
+so on any thing
+As we are rewriting url it makes more sense if we write url as parameter,
+i.e
+RewriteRule ^(.*)$ index.php?url=$1   ===> $1 compulsary
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA]  ===> query_string_append
+every this after ? are called query_string
+we instruct that query_string get append
+
+
+Now, Adding  comman-space-L will hide this folder where .htaccess file is located
+RewriteRule ^(.*)$ index.php?url=$1 [QSA, L]
+
+18 min 

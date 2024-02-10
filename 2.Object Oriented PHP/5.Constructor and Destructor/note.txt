@@ -1,0 +1,29 @@
+A constructor is a member function/method of a class which initializes objects of a class.
+Constructor is a special member funtion(function inside class defination) of a class that is executed whenever we create new objects of that class. 
+When a class or struct is created, its constructor is called. Constructors have the same name as the class or struct, and they usually initialize 
+the data members of the new object.
+A constructor is a member function of a class which initializes objects of a class. In C++, Constructor is automatically called when
+ object(instance of class) create. It is special member function of the class.
+A constructor is generally used to set initial values for any of the fields (aka variables). It may also be used to “set up” anything you need for
+ a class when you instantiate it.
+The contructor is reponsible to initialize value for object as soon as we create object. Means when we create constructor on any class whenever an
+ object of a class is initialized, contructor will automatically invoke.As constructor conctructs the value for the data member of a class it is
+  called constructor.
+
+QUESTION :
+Why constructor is used instead of functions?
+https://stackoverflow.com/questions/9752437/why-constructor-is-used-instead-of-functions
+
+Why constructor is used instead of functions?
+<!-- 
+here what is difference between __construct() and SetInfo()???
+or what is difference between constructor and normal funtion ???
+ans : constructor is called at the time when object is initialized where in case of normal function we first create object and then call normal_funtion 
+-->
+
+
+public function __destruct(){} ....// destructor
+to run destructor we use function called unset() that will unset or destroy the object that insdie the parenthesis by running the destructor function inside the class.
+unset($object1); destroy object1
+
+Is it mandatory to use destructor in a class in php?

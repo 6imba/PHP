@@ -1,0 +1,43 @@
+SESSION:
+
+Session helps to maintian an account in a websites.
+If you want to make such type of website in which firstly user have to (signup_OR_create an account) and then login to their respective account 
+anytime to access data then SESSION comes in use.
+
+So what is session then???
+Session is a super_global_varaible.It is different than other normal varaible.As we know that if we create a normal variable than we can use it 
+within that particular page only whereas if we create super_global_variable SESSION in one certain page than we can access/use the value store in 
+that session from various other pages...
+
+Steps for SESSION in php:-
+1. session start
+2. assign value in session
+3. fetch value from session (Fetch  means 'to go and get'.e.g: "fetch me the newspaper, Billy".)
+4. destroy session
+
+Step 1 : session start
+You have to start session in the first line of every page where you want to use Session by writing the session function i.e session_start().
+<?php session_start(); ?>
+
+Step 2 : assign value in session
+It is same like assigning value in variable.As session is super_global_variable we write it in this way $_SESSION['']="";
+$_SESSION['key/name']="value";
+$_SESSION['email']="simba@gmail.com";
+In this way we have assign a value("simba@gmail.com") in session with key('email').Now when i want to fetch email/value("simba@gmail.com")
+ from other pages then i have to provide the key('email') to that each page.
+
+Step 3 : fetch value from session
+As we know that we assign session value in one page and fetch it from another page.Now i want to fetch value of Session.
+Its easy to fetch session value.We create a varible and  store the value of session in it.
+For that we have to write .... $newly created variable name = $_SESSION['key where we have stored value']
+i.e : $mail = $_SESSION['email']; ==> {Therefore $mail="simba@gmail.com"}
+
+Now firstly we need to call/open the file where we have assign the value of session, then after we have to open the file through which we can 
+fetch the session.
+
+Step 4 : Destroy/ unset session
+session_destroy();
+
+Here are 3 files inside this Session folder.
+iif you run file 1 it assign session variable and then if you run file 3 it destroy sessoion and finally if you run file 2 error as session
+ has already been destroy no session variable initialized 

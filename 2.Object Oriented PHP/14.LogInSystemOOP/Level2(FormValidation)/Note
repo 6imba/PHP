@@ -1,0 +1,6 @@
+here  
+value="<?php if(!empty($data['password'])): echo $data['password']; endif; ?>
+in       
+<input type="password" name="password" class="control" placeholder="Create Password..." value="<?php if(!empty($data['password'])): echo $data['password']; endif; ?>"> here
+Will print remove the empty field error after data is inserted.
+first click to create account with every empty feild and then enter data into one of input and again press create account error will vanish

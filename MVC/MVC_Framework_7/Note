@@ -1,0 +1,90 @@
+MVC is a design pattern that divides our website_code into three part.
+View ==> Html codes
+Model ==> SQL queries realated to Database
+Controller ==> Communicate between Views and Model
+
+Take data from index_page(view) gives to Model and return data to view and show view after modification
+
+
+
+.htaccess :
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+  RewriteEngine On
+  RewriteBase RootPHP/MVC/MVC_Framework_7/public
+  RewriteCond %{REQUEST_FILENAME} !-d //search for requested file in browser by user
+  RewriteCond %{REQUEST_FILENAME} !-f // if requested file exist inside public folder, run it
+  RewriteRule  ^(.+)$ index1.php?url=$1 [QSA,L] // if requested file doesnt exist inside public folder, run root_file index1.php
+</IfModule>
+
+?url ==> query string
+http://localhost/RootPHP/MVC/MVC_Framework_7/public/index1.php/controller/method/4/5/6/7
+query string ==> ?url ==> controller/method/4/5/6/7
+
+
+if(isset($_GET['url'])){//url is from query string inside .htaccess
+            print_r($_GET['url']);
+            //if http://localhost/RootPHP/MVC/MVC_Framework_7/public/index1.php/controller/method/4/5/6/7
+            //query string ==> ?url ==> controller/method/4/5/6/7
+            //output : controller/method/4/5/6/7
+
+        }
+
+
+//filter url
+if(isset($_GET['url'])){
+            $url = $_GET['url'];//get url //$url = controller/method/4/5/6/7
+            $url = rtrim($url);//trim spaces etc from  right side of url
+            $url = filter_var($url,FILTER_SANITIZE_URL); // filter / remove symbolic character from url
+        }
+
+explode url :
+ if(isset($_GET['url'])){
+            $url = $_GET['url'];
+            $url = rtrim($url);
+            $url = filter_var($url,FILTER_SANITIZE_URL);
+            $url = explode("/", $url);// split url on '/' forward_slace into array form
+        }
+    }
+
+
+
+class route{
+    public $controller = "welcome";
+    public $method = "index";
+    public $params = [];
+
+    public function __construct()
+    {
+        $url = $this->url();
+        if(!empty($url)){
+            if(file_exists("../apps/controllers/".$url[0].".php")){
+                $this->controller = $url[0];
+                unset($url[0]); //we already assign controller into $this->controller so need of $url[0] anymore. Therefore unset it.
+            }
+            else{
+                echo "Controller Not Found !";
+            }
+        }
+
+        require_once "../apps/controllers/".$this->controller.".php";
+        print_r($this->controller);
+        echo "<br>";
+        var_dump($this->controller);
+        echo "<br>";
+        $this->controller = new $this->controller;
+        print_r($this->controller);
+        echo "<br>";
+        var_dump($this->controller);
+    }
+
+output :
+welcome
+string(7) "welcome"
+welcome Object ( )
+object(welcome)#3 (0) { }
+
+
+
+method_exists($this->controller,$url[1])
+method_exists(class_object,method_name)

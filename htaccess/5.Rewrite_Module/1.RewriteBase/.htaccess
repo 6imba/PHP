@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteBase /RootPHP/htaccess/5.Rewrite_Module/1.RewriteBase

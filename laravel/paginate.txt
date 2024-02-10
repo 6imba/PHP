@@ -1,0 +1,43 @@
+in PostController.php
+
+in index() method:
+
+$all_posts = Post::all();
+into 
+$all_posts = Post::paginate(5);
+
+
+
+instead of method call all we gives it method call paginate
+and pass number of item we want in our page
+$all_posts = Post::paginate(5);
+#this gives only 5 posts in index page
+
+
+here, 
+url : http://127.0.0.1:8000/posts gives us list of first 5 blog post as first page
+url : http://127.0.0.1:8000/posts?page=2 gives us list of another 5 blog post after first 5 as second page
+url : http://127.0.0.1:8000/posts?page=8 will give empty filed in post page as we have only 227 post write now and our url requeat is asking for 8th page with 5*8=40 post 
+
+since we are using paginate method now we have access to some of other method that only comes with paginate method
+one of them is link which genarate the link with our pagination like next and pre buttons
+
+So in inde.blade.php
+	<div class="text-center">
+            {!! $allposts->links() !!} //calling link method on our object here
+        </div>
+
+	<div class="text-center">
+            {!! $allposts->links() !!}   
+        </div>
+
+
+Now order posts by recently added page:
+sorting/searching by id is bit faster when it comes to searching in db
+
+   $all_posts = Post::oerderBy('id', 'desc')->paginate(5); ==> with this one line of code there are tons of logic being added to our sql query
+
+
+
+
+

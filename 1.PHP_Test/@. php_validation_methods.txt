@@ -1,0 +1,69 @@
+- trim()
+- htmlspecialchars()
+- stripslashes()
+- preg_match("RegEx")
+- filter_var()
+- isset()
+
+Q. To display inputed filed in form input area after form submit: e.preventDefault() OR echo ($PHP_Vriable_Data)?
+
+# 2: PHP include and require Statements
+    - It is possible to insert the content of one PHP file into another PHP file (before the server executes it), with the include or require statement.
+    - The include and require statements are identical, except upon failure:
+        > require will produce a fatal error (E_COMPILE_ERROR) and stop the script
+        > include will only produce a warning (E_WARNING) and the script will continue
+        > <?php include 'footer.php';?>
+
+    - Use require when the file is required by the application.
+    - Use include when the file is not required and application should continue when file is not found.
+
+# PHP File Handling:
+    - readfile()
+    - fopen(_filename,_executionMode)
+    - $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+        > mode: r,w,a,x,r+,w+,a+,x+
+    - fread()
+    - fclose()
+    - fgets()
+    - feof()
+    - fgetc()
+    - 
+
+Q. output buffer? ==> The readfile() function reads a file and writes it to the output buffer.
+
+Q. What is php.ini?
+
+Q. enctype="multipart/form-data" ==> <form action="upload.php" method="post" enctype="multipart/form-data"> ?
+
+Q. do we have cookie on both server side and client side?
+    - There is no such thing as 'server side cookie' vs 'client side cookie'.
+    - There are only cookies, name/value pairs sent in HTTP headers with both requests and responses.
+
+Q. is token and session id same? when do we need to permanent and temporary sessionid?
+
+> echo variable with String:
+    - echo "The fruit is {$this->name}.";
+    - echo "The fruit is ".{$this->name}.".";
+
+# Abstract class:
+    - A child class must defined/override the abstract_method/property of its abstract_parent_class.
+
+# Multiple inheritacne in php:
+    - interface
+    - triats
+    - 
+
+Q. Why php doesnt have muliplr inheritance?
+Q. Why and when Abstract and Interface class in php?
+
+# Double coln:
+    - static method ==> greeting::welcome();
+    - class Constant ==> Goodbye::LEAVING_MESSAGE;
+
+# class, static, __construt, 
+
+# static properties and method can be used outside class, inside class method, inside another class, child class,
+Q. when and why static method?
+
+Q. What, when and why namespace?
+

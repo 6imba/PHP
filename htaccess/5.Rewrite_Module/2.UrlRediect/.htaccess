@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /RootPHP/htaccess/5.Rewrite_Module/2.UrlRediect
+RewriteRule ^(.*)$ index.php?url=$1 [QSA]

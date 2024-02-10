@@ -1,0 +1,95 @@
+What is PHP MVC framework?
+PHP MVC is an application design pattern that separates the application data and business logic (model) from the presentation (view). 
+MVC stands for Model, View & Controller.
+The controller mediates between the models and views.
+
+
+
+MVC is a software architectural pattern for implementing user interfaces on computers. It divides a given application into three interconnected 
+parts. This is done to separate internal representations of information from the ways information is presented to, and accepted from the user.
+
+
+MVC stands for "Model view And Controller".
+The main aim of MVC Architecture is to separate the Business logic & Application data from the USER interface.
+Different types of Architectures are available. These are 3-tier Architecture, N-tier Architecture, MVC Architecture, etc.
+The main advantage of Architecture is Reusability, Security and Increasing the performance of Application.
+
+Model: Database operation such as fetch data or update data etc.
+
+View: End-user GUI through which user can interact with system, i.e., HTML, CSS.
+
+Controller: Contain Business logic and provide a link between model and view.
+
+
+
+
+Model:
+The Model object knows all about all the data that need to be displayed.
+The Model represents the application data and business rules that govern to an update of data.
+Model is not aware about the presentation of data and How the data will be display to the browser.
+View:
+
+The View represents the presentation of the application.
+View object refers to the model remains same if there are any modifications in the Business logic.
+In other words, we can say that it is the responsibility of view to maintain consistency in its presentation and the model changes.
+
+
+Controller:
+Whenever the user sends a request for something, it always goes through Controller.
+A controller is responsible for intercepting the request from view and passes to the model for appropriate action.
+After the action has been taken on the data, the controller is responsible for directly passes the appropriate view to the user.
+In graphical user interfaces, controller and view work very closely together.
+
+
+
+
+
+PHP MVC Design Pattern
+Let’s now briefly discuss each component of the MVC design pattern.
+
+Model – this part is concerned with the business logic and the application data. It can be used to perform data validations, process data and store it. The data can come from;
+
+flat file
+database
+XML document
+Other valid data sources.
+Controller – this is the part deals with the users’ requests for resources from the server.
+
+As an example, when the users requests for the URL …/index.php?products=list, the controller will load the products model to retrieve the products data then output the results in the list view.
+
+In a nutshell, the controller links the models and views together depending on the requested resources.
+
+Views – this part deals with presenting the data to the user. This is usually in form of HTML pages.
+
+
+
+
+
+Types of PHP MVC framework
+Selecting the best PHP framework is a challenge.
+
+You don’t have to write your own framework to benefit from the advantages of MVC.
+
+You should only attempt to create your own MVC related application design for understanding how MVC frameworks work.
+
+Once you are comfortable with the way MVC frameworks work, you should move on to the mature and already tested frameworks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Summary
+A framework is a set of libraries that provide partial implementation of common tasks.
+PHP has a number of open source mature and tested MVC frameworks.
+A good development approach separates the data from the presentation and encourages the use of single entry point into an application.
+Traditional PHP applications that follow application design best practices can be ported to MVC frameworks with minimal modifications.

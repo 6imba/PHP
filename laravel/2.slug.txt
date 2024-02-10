@@ -1,0 +1,79 @@
+slug database migration
+
+cmd : php artisan make:migration add_slug_to_posts
+
+se in database/migration there new migration call add_slug_to_posts
+
+inside migration add_slug_to_posts:
+	
+adding cloumn:
+    public function up()
+    {
+	keyword::method(name_of_table, anonmous_function(function_variable){})
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
+    }
+
+
+funtion up will do miration and function down will undo migration
+
+
+
+
+into 
+	Schema::table('posts', function (Blueprint $table) {
+            $table->string('slug');
+	    funtion_var/obj->datatype('name_of_col')
+        });
+
+
+now droping clolumn:
+
+
+public function down()
+    {
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('slug');
+        });
+
+	Schema::table('users', function (Blueprint $table) {
+    	    $table->dropColumn('votes');
+	});
+    }
+}
+
+It will show error if we try to drop column unless we add doctrine/dbal into our composer.json file inside "require-dev": of your laravel project
+
+and do composer update cmd : composer self-update and then composer update
+
+Now run migration to add colum to database table
+
+before mirgrating create unique index for slug for quick result
+
+So creating Index :
+Schema::table('users', function (Blueprint $table) {
+    $table->string('email')->unique();
+});
+
+create index between description and created_at :
+Schema::table('users', function (Blueprint $table) {
+    $table->string('email')->unique()->after('description');
+});
+
+note : indexing and deindexing
+
+
+cmd : php artisan migration
+cmd : php artisan migration : rollback
+
+
+Ok Now see scinde we are adding new colum slug with unique index it create slug coumn but with null value for thos data we have already avialable in table so now index cant ne null and 
+also we cannot edit nul to unique index so it show sql error so now there is no any other way to clear our database table data :
+
+cmd : php artisan migration : refresh => undoes all migration and again does all migration which will keep all database structure as it is but lose all data that were previously created 
+in database table so here some the use of another concept call data seeding that add dummy data to table prgramitically using terminal:
+cmd : php artisan migration db:seed
+
+
+

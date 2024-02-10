@@ -1,0 +1,14 @@
+create table tablefour
+(
+	RollNo int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Name varchar(256) NOT NULL
+)
+
+
+change the feildname or column name in mysql
+==>alter table tablefour change column picsrc PicSrc varchar(500);
+
+while input type file always choose enctype="multipart/form-data"
+
+at begining rollno 3 was blank the later it was update and name and pic was inersted...
+UPDATE `tablefour` SET `Name`='Vanji',`PicSrc`='UploadFile/BhaiDdVanji.jpg' WHERE RollNo=3;

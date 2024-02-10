@@ -1,0 +1,4 @@
+Directoryindex index3.html
+ErrorDocument 404 /RootPHP/htaccess/3.EnableOrDisableDir/error/error_404.html
+ErrorDocument 403 /RootPHP/htaccess/3.EnableOrDisableDir/error/error_403.html
+Options -Indexes

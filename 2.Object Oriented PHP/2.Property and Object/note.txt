@@ -1,0 +1,53 @@
+note : 1
+directly define property
+<?php
+    class Personality//class
+    {
+        //properties
+        public $name="Simba";
+        public $age="21";
+    }
+?>
+
+note:2
+define property using another method called SetInfo;
+<?php
+    class Personality//class
+    {
+        //properties
+        public $name;
+        public $age;
+
+        //method
+        public function SetInfo()
+        {
+            $this->name="SimbA";
+            $this->age='21';
+            // $this keyword point to the specific class where it is written
+        }
+    }
+?>
+
+note:3
+define method/function SetInfo to set data 
+<?php
+    class Personality//class
+    {
+        //properties
+        public $name;
+        public $age;
+
+        //method
+        public function SetInfo($data1,$data2)
+        {
+            $this->name=$data1;
+            $this->age=$data2;
+        }
+    }
+?>
+
+but we never use this note 1 process to declear property in oop as it wont make any sense why we are using oop.
+
+
+question
+hoe to ignore some line from include file?

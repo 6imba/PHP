@@ -1,0 +1,22 @@
+public $name; // object_property
+public static $sciencetificname ="HomoSepiens",$date;//static_property
+
+public function SetInfo($data1,$data2)// object_method
+        {
+            $this->name=$data1; // object_property
+        }
+public static function set_coded_date($data3)//static_method
+        {
+            self::$date=$data3; //static_property
+        }
+
+Instead of $this, for static class_members(variables or functions), we use self, along with scope resolution operator ::
+here $date is static property not the property of an object, so we need to refernce to the variable or use $ sign
+//object_property name,age. here $ is not needed 
+//static_property $sciencetificname. $ is needed
+
+
+
+when to use static_proprty and when to use object_property
+static_proprty = same property for all template
+object_property = different property

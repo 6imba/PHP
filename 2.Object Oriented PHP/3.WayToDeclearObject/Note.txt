@@ -1,0 +1,104 @@
+1.we can declear object of one class inside another class
+2.we cannot declear object of one class inside the same class
+3.we call variable outside the class inside the class in php using global variable
+
+DOC 1
+can we declare object in one file and call that object from another file
+#file1
+<?php
+    class A
+    {
+        public $name;
+    }
+    class B//class
+    {
+        public function F($data)
+        {    
+            $a = new A;
+            $a->name=$data;
+        }
+    }
+?>
+file2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ObjectPlay</title>
+</head>
+<body>
+
+
+    <?php
+        include "6.ab.php";
+        $b = new B;
+        $b->F('Logla');
+        echo $a->name;
+    ?>
+    
+</body>
+</html>
+
+
+DOC 2	 
+can we call object that is decleared outside that class of one class inside another class 
+#file1
+<?php
+
+    class A
+    {
+        public $name='amir';
+    }
+    $a = new A;
+    class B//class
+    {
+        public function F()
+        {
+            echo $a->name;
+
+        }
+    }
+?>
+#file2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ObjectPlay</title>
+</head>
+<body>
+
+
+    <?php
+        include "6.ab.php";
+        $b = new B;
+        $b->F();
+    ?>
+    
+</body>
+</html>
+
+DOC 1 and DOC 2 prints error .May be there fore this two condition cannot success.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,208 @@
+ctrl=u ==> view source code
+
+$name = "Kiran";
+echo "Is ".$name." boy?";
+echo "Is {$name} boy?";
+Both output : Is Kiran boy?
+
+constant/variable
+
+In-Build Function
+{
+settype(variable,datatype)
+gettype(variable)
+define(variable,value)
+round ($float,2)
+ceil($float)
+floor($float)
+
+strtolower($variable)===>all letter small
+strtoupper($variable)===>all letter capital
+ucfirst($variable)===>first letter of first word capital
+ucwords($variable)===>first letter of all word capital
+strlen($fourth)
+trim(" B C D ")
+strstr($first,"e")
+str_replace("Hello","Syaudai",$first);
+
+	echo str_repeat($fourth,3)."<br>";
+	echo substr($first,5,1)."<br>";
+	echo substr($first,5,2)."<br>";
+	echo substr($first,5,10)."<br>";
+	echo strpos($first,"and")."<br>";
+	echo strchr($first,"m")."<br>";
+
+
+}
+
+boallen
+$a = true
+$b = false
+
+see 8 in php
+
+
+https://tutorialehtml.com/en/php-tutorial-superglobal-arrays/
+
+
+
+
+
+
+
+
+
+include : The include (or require) statement takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement.
+	  It is possible to insert the content of one PHP file into another PHP file (before the server executes it), with the include or require statement
+
+mysqli_query() : mysqli_query() function performs a query against a database.
+		eg : mysqli_query(query1)
+		     mysqli_query(query1,query2) i.e. ==> mysqli_query(connection, query, resultmode)
+		if ($result = $mysqli_query($conn,$sql)) 
+			{
+  			#code
+			}//if ($result is true)
+
+hearder : The header() function sends a raw HTTP header to a client
+	  Syntax ==> header(header, replace, http_response_code)
+	  Example ==> header("Content-type:application/pdf");
+		      header("Location:index.php");
+
+mysqli_fetch_assoc() : The mysqli_fetch_assoc() function fetches a result row as an associative array.
+		       Syntxa ==> mysqli_fetch_assoc(result) 
+
+
+<nav> ==> navigation tag ==> here we keep links of all page in website(navigation bar)
+<div> ==> container ==> division of code <div style="">
+
+mysqli_connect_error()
+
+http://www.learningaboutelectronics.com/Articles/How-to-upload-images-using-PHP.php
+
+
+
+
+
+
+
+
+
+
+
+//table in database..................
+
+create table usertable 
+(
+	id     int(11) AUTO INCREMENT PRIMARY KEY not null, 
+    fname  varchar(256)  not null,
+    lname  varchar(256)  not null,
+    email  varchar(256)  not null,
+    u_id    varchar(256) not null,
+    u_pass  varchar(256) not null
+);
+
+insert into userstable (fname,lname,email,u_id,u_pass) values ('Randy','Ortan','ortan22@gmail.com','adminortan','otran123');
+
+
+
+
+
+
+
+//Database Connection file...........(1.Database.php)
+
+we need four paramenter inorder to connect to database (i.e. servername,username,password and database name)
+By default in xampp:
+$dbservername = "localhost";
+$dbusername   = "root";
+$dbpassword   ="";
+$dbname       ="name of batabase";
+//$variable   ="actual file_path"
+all 4 parameter should be order in way way as in above (i.e. servername,username,password and database name)
+
+now we have declareand define all 4 paramenters so we can to run database connection
+$conn = mysqli_connect($dbservername,$dbusername,$dbpassword,$dbname); 
+$variable = mysqli_connect(); //phpfunction that connects to database where we need all 4 parameter
+//Finally this file has connection to database.........
+//Therefore connection done.............
+
+
+//Home file................
+ 
+//include Database Connection file which will help this home file to link with Database Connection file and access database............
+<?php 
+include '1.Database.php';
+php(function/statement) = 'DatabaseConnectionfileName'.php;
+ ?>
+//Therefore now we can access anything from Database Connection file...........(1.Database.php) in this home file where Database Connection file...........(1.Database.php) is included
+
+<html>....</html>
+
+
+
+
+
+
+
+include : The include (or require) statement takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement.
+	  It is possible to insert the content of one PHP file into another PHP file (before the server executes it), with the include or require statement
+
+phpfunction
+mysqli_query() : mysqli_query() function performs a query against a database.
+		eg : mysqli_query(query1)
+		     mysqli_query(query1,query2) i.e. ==> mysqli_query(connection, query, resultmode)
+		if ($result = $mysqli_query($conn,$sql)) 
+			{
+  			#code
+			}//if ($result is true)
+
+hearder : The header() function sends a raw HTTP header to a client
+	  Syntax ==> header(header, replace, http_response_code)
+	  Example ==> header("Content-type:application/pdf");
+		      header("Location:index.php");
+
+phpfunction
+mysqli_fetch_assoc() : The mysqli_fetch_assoc() function fetches a result row as an associative array.
+		       Syntxa ==> mysqli_fetch_assoc(result) 
+
+
+
+
+
+
+
+
+
+
+
+//code
+$phpsqlstatement = mysqli_num_rows()
+//error
+mysqli_num_rows() expects exactly 1 parameter, 0 given in C:\xampp\htdocs\PHP\Php and Database\HomeFile.php on line 20
+
+
+//code
+ $result = mysqli_query($conn,$sql);
+ $resultcheck = mysqli_num_rows($result);
+//error
+Warning: mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in C:\xampp\htdocs\PHP\Php and Database\HomeFile.php on line 20
+
+
+question of mysql
+forgot to auto_ increament id so
+how to reset alredy exixting column id to auto_increament?
+how to clear all data from database and make database empty 
+
+
+if u have symbol in name like php&database then DROP DATABASE php&databae; wont work as use DROP DATABASE `php&databae`; note that ` is not inverted comma
+
+form action="foldername/filename"
+
+header will take u to the targeted loacation after the action
+header("Location: ../filename?message");
+header('Location:path');....syntxa
+
+difference between
+ input type="button"/"submit" and button
+value="<?php global $contactphone; echo $contactphone ?>" and value="<?php echo $contactphone ?>"
+

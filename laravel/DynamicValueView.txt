@@ -1,0 +1,40 @@
+#A (Passing value to DynamicView) 
+View:about.blade.php
+<body class="antialiased">
+        <h1 style="text-align: center;">About : {{$name}}</h1>
+        <h1 style="text-align: center;">Email : {{$mail}}</h1>
+</body>
+
+Route : Route::get('about', 'App\Http\Controllers\PagesController@getAbout');
+
+PagesController : 
+public function getAbout()
+    {
+        $fname = 'Amir';
+        $lname = 'Shrestha';
+        $fullname = $fname.' '.$lname;
+        $email = $fullname.'55@gmail.com';
+        return view('pages/about')->with('name',$fullname)->with('mail',$email);
+    }
+
+#B (DynamicView -> Passing value through Array)
+View:about.blade.php
+    <body class="antialiased">
+        <h1 style="text-align: center;">About : {{$datas['name']}}</h1>
+        <h1 style="text-align: center;">Email : {{$datas['mail']}}</h1>
+    </body>
+
+Route : Route::get('about', 'App\Http\Controllers\PagesController@getAbout');
+
+PagesController : 
+public function getAbout()
+    {
+        $fname = 'Amir';
+        $lname = 'Shrestha';
+        $fullname = $fname.' '.$lname;
+        $data = [
+                "name" => $fullname,
+                "mail" => $email 
+                ];
+        return view('pages/about')->with('datas',$data);
+    }

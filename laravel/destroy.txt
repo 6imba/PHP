@@ -1,0 +1,29 @@
+laravel-recipies.com
+
+In show.blade.php :
+{!! Html::linkRoute('posts.destroy', 'Delete', array($postinfo->id), array('class' => 'btn btn-danger btn-block') ) !!}
+
+into
+
+posts.destroy is name of route
+{!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+
+
+
+In PostController.php
+
+public function destroy($id)
+    {
+        //
+    }
+
+
+Into
+
+
+public function destroy($id)
+    {
+        $del_post = Post::find($id);
+        $del_post-> delete();
+        return redirect()->route('posts.index');
+    }

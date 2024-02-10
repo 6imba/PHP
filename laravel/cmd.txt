@@ -1,0 +1,32 @@
+start .. : opens folder
+systeminfo : info of pc
+cmd => wmic then produuct get name : info of installed app
+exit and quit : exit current command line
+
+
+cd : change directory
+dir : list of file directory
+cd .. : go one step back directory
+mkdir foldername : create a folder with pprovided_name
+cd foldername : move to foldername
+where composer : show the location where composer is installed
+composer global about : 
+
+
+laravel new blog : create laravel application
+
+
+artisan  is command line system for laravel
+php artisan make : model Post --migration  <==> create model called Post.php inside app/model
+php artisan : command line system for laravel
+php artisan --version : 
+php artisan serve : open laravel server
+app>php artisan route:list
+php artisan route:cache
+
+cmd : php artisan make:migration add_slug_to_posts
+cmd : php artisan migration
+cmd : php artisan migration : rollback
+cmd : php artisan migration : reset  => undoes all migration
+cmd : php artisan migration : refresh => undoes all migration and again does all migration which will keep all database structure as it is but lose all data that were previously created in database table
+cmd : php artisan migration db:seed

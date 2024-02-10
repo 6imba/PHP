@@ -1,0 +1,4 @@
+Flow of MVC Framework :
+Request from browser ==>index.php(default_request) ==> Controller(check_parameter/conditon) ==> Model/Views 
+
+Actually MVC is not design in the way that is in this 1.MVC_FW but it is done this way over here so that we can get some concept of MVC.

@@ -1,0 +1,32 @@
+css not working
+
+$post->title = $request->title; in create
+$post->title = $request->input('title'); in update
+
+return view('posts.show')->withPost($postvar); //not working
+        // Session::put('key', 'value');
+        // Session::put('key', 'value');
+        // Session::flash('success', 'The blog post was sucessfully saved !'); //create session message
+instead using $request->session()->flash('success', 'The blog post was sucessfully saved !');
+
+
+pagination list is giveing unmanaged view
+{{-- <div class="text-center"> --}}
+                {{-- {!! $allposts->links() !!} --}}
+                {{-- {{ $allposts->render() }} --}}
+            {{-- </div> --}}
+
+
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{-- <a href="{{ route('posts.index') }}" class="btn btn-light btn-sm">Show All Posts</a> --}}
+                        {!! Html::linkRoute('posts.index', 'Show All Posts', [], ['class' => 'btn btn-default btn-sm btn-block']) !!}
+                    </div>
+                </div>

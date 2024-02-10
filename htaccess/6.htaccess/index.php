@@ -1,0 +1,1 @@
+<h1>Hi I am index.php</h1>

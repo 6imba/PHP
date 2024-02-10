@@ -1,0 +1,39 @@
+#A1 (Route_Without_Controller)
+Url ==> http://127.0.0.1:8000
+Route-routes/web.php ==> Route::get('/', function () { return view('welcome'); });
+here, welcome is pagename
+
+
+#A2 (Route_Without_Controller)
+Url ==> http://127.0.0.1:8000/home
+Route-routes/web.php ==> Route::get('home', function () { return view('home'); });
+here, home is pagename
+
+#B (Route_With_Controller)
+Url ==> http://127.0.0.1:8000/home
+Route-routes/web.php ==> Route::get('home', 'App\Http\Controllers\PagesController@getHome');
+PagesController ==> public function getHome(){ return view('home'); }
+here, 
+App\Http\Controllers is namespace
+PagesController is definate-controller
+getHome is method inside definate-controller that return viewHomepage
+
+#C (Route_With_Controller)
+Url ==> http://127.0.0.1:8000/home
+
+Route-routes/web.php ==> 
+use App\Http\Controllers\PagesController;
+Route::get('home', [PagesController::class, 'getHome']);
+
+PagesController ==> public function getHome(){ return view('home'); }
+
+#D (/ slash Sets base file)
+Route::get('/', 'App\Http\Controllers\PagesController@getIndex');
+by default welcome.blade.php is index file 
+this route set given page inside getIndex method as indexfile
+
+#E (move all pages to pages folder inside view folder)
+Url ==> http://127.0.0.1:8000/home
+Route-routes/web.php ==> Route::get('home', 'App\Http\Controllers\PagesController@getHome');
+PagesController ==> public function getHome(){ return view('pages/home'); }
+here, 

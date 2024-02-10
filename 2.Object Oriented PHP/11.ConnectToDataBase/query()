@@ -1,0 +1,97 @@
+//connection in procedual php
+$conn = mysqli_connect("localhost","my_user","my_password","my_db");
+$sql = "select * from tutorial;";
+$result = mysqli_query($conn, $sql);
+
+
+//connection in oop php
+$conn = new mysqli("localhost","my_user","my_password","my_db");
+$sql = "select * from tutorial;";
+$result = $conn -> query(sql)
+//The new keyword create an object i.e $conn
+
+
+//connection in procedual php
+$db_host = 'localhost';
+$db_username = 'root';
+$db_password = '';
+$db_name = 'php';
+
+$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name);
+$sql = "select * from tutorial;";
+$result = mysqli_query($conn, $sql);
+
+
+
+//connection in oop php
+
+class Dbh{
+    private $host, $user, $password, $database;
+
+    protected function connect(){
+        $this->host = 'localhost';
+        $this->user = 'root';
+        $this->password = '';
+        $this->database = 'php';
+
+        $conn = new mysqli($this->host, $this->user, $this->password, $this->database); //OOP style programming to Open a new connection to the MySQL server
+        return $conn;
+    }
+
+    $sql = "SELECT * FROM oop_php";
+    $result = $this->connect()->query($sql);
+    here $this->connect() returns $conn
+}
+
+
+finally :
+For SELECT, SHOW, DESCRIBE, EXPLAIN and other statements returning resultset, mysql_query() returns a resource on success, or false on error.
+For other type of SQL statements, INSERT, UPDATE, DELETE, DROP, etc, mysql_query() returns true on success or false on error.
+
+
+so what does query return in above code  --->  $result = $this->connect()->query($sql); ---> query($sql) returns resources/table_selected_data
+echo gettype($result); ==>output : object.
+Therefore, variable $result holds object with given query_value
+ //variable $result is an object that holds given query_value
+
+
+Syntax:
+Procedural style:
+mysqli_query(connection, query, resultmode)
+
+Object oriented style:
+$mysqli -> query(query, resultmode) //here connection is hold by $mysqli
+
+
+
+How to see what does an object  consist of in php?
+
+
+
+<?php
+
+include 'dbh.class.php';
+
+class User extends Dbh{
+
+    public function getAllUser(){
+        $sql = "SELECT * FROM oop_php";//query_statement
+        $result = $this->connect()->query($sql); 
+        // here, $this->connect() is the protected_method of parentclass(Dbh) which return $conn(object that holds connection to database) 
+        // && mysqli_query() or query() is the inbuilt_function in oop_php that performs a query against a database.
+        // && query($sql=(select)) with object($conn) returns resources(selected_data from table)
+        // && variable $result is an object or holds an object with given query_value
+        $numbRows = $result->num_rows; //num_rows is the inbulit function of oop_php that gives number of rows in the object/result_set($result).
+        //Here current time i have 4,user in my database_table.So, echo $numbRows outputs 4;
+        if ($numbRows > 0){//check if object/result_set/table($result) contains any user_data/row
+            $row = $result->fetch_assoc(); //fetch_assoc() is the inbulit function of oop_php that Fetch a result_row hold by object($result) as an associative array.Here, we have stored fetched_array into variable($row). ARRAY OF ASSOCIATIVE ARRAY
+            echo gettyoe($row);
+            // while($row){
+
+            // }
+        }
+}
+
+$obj1 = new User();
+$obj1->getAllUser();
+?>

@@ -1,0 +1,1818 @@
+X- Cross Platform, A - Apache (web server), M- MySql Database, P - PHP/PearlXX
+
+
+
+
+we cant run php in window terminal. PHP is primarily used on Server-side (and JavaScript on Client Side) to generate dynamic web pages over HTTP, however you will be surprised to know that you can execute a PHP in a Linux Terminal without the need of a web browser. But can use it in Linus.
+Since PHP is a server side scripting language, a lot of website development using PHP is done on a live web environment. However, PHP does allow you to install it and run scripts on your local machine with no web access needed.
+
+
+<?php
+    echo "Hello";
+    print ("World");
+    echo "<h1>Hello in heading tag in php</h1>";
+?>
+
+output:
+HelloWorld
+Hello in heading tag in php
+
+
+
+global and static variable
+$GLOBAL[index] ==> array
+
+
+$txt = "W3Schools.com";
+echo "I love $txt!";
+echo "This ", "string ", "was ", "made ", "with multiple parameters.";
+print "This ", "string ", "was ", "made ", "with multiple parameters."; ==> error
+echo "<h2>" . $txt1 . "</h2>";
+
+comment:
+// This is a single-line comment
+# This is also a single-line comment
+/*
+This is a multiple-lines comment block
+that spans over multiple
+lines
+*/
+
+
+data types : 
+{{{{{{{{{{{
+String, 
+int:$x = 1, $x = -5,
+
+
+Float : $x = 10.365;
+Boolean : TRUE or FALSE, ===> $x = true; / $y = false;
+
+var_dump() ==> function returns the data type and value ==> $x = 5985; ==> int(5985)
+
+Array : 
+$cars = array("Volvo","BMW","Toyota"); ==> 
+var_dump($cars)
+array(3) {
+  [0]=>
+  string(5) "Volvo"
+  [1]=>
+  string(3) "BMW"
+  [2]=>
+  string(6) "Toyota"
+}
+
+
+PHP Object
+Classes and objects are the two main aspects of object-oriented programming.
+A class is a template for objects, and an object is an instance of a class.
+When the individual objects are created, they inherit all the properties and behaviors from the class, but each object will have different values for the properties.
+Let's assume we have a class named Car. A Car can have properties like model, color, etc. We can define variables like $model, $color, and so on, to hold the values of these properties.
+
+When the individual objects (Volvo, BMW, Toyota, etc.) are created, they inherit all the properties and behaviors from the class, but each object will have different values for the properties.
+
+If you create a __construct() function, PHP will automatically call this function when you create an object from a class.
+
+<?php
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
+  }
+  public function message() {
+    return "My car is a " . $this->color . " " . $this->model . "!";
+  }
+}
+
+$myCar = new Car("black", "Volvo");
+echo $myCar -> message();
+echo "<br>";
+$myCar = new Car("red", "Toyota");
+echo $myCar -> message();
+?>
+
+
+PHP NULL Value : $x = null;
+
+PHP Resource
+The special resource type is not an actual data type. It is the storing of a reference to functions and resources external to PHP.
+A common example of using the resource data type is a database call.
+We will not talk about the resource type here, since it is an advanced topic.
+
+}}}}}}}}}}}}}}}
+
+PHP String Functions : strlen(), str_word_count(), strrev(), strpos(), str_replace(), 
+strpos("Hello world!", "world"); // outputs 6
+str_replace("world", "Dolly", "Hello world!"); // outputs Hello Dolly!
+The PHP string reference contains description and example of use, for each function! ==> https://www.w3schools.com/php/php_ref_string.asp
+
+
+PHP Numbers
+{{{{{{{{{{
+One thing to notice about PHP is that it provides automatic data type conversion.
+So, if you assign an integer value to a variable, the type of that variable will automatically be an integer. Then, if you assign a string to the same variable, the type will change to a string.
+This automatic conversion can sometimes break your code.
+
+PHP Integers:
+An integer is a number without any decimal part.
+2, 256, -256, 10358, -179567 are all integers. While 7.56, 10.0, 150.67 are floats.
+So, an integer data type is a non-decimal number between -2147483648 and 2147483647. A value greater (or lower) than this, will be stored as float, because it exceeds the limit of an integer.
+Another important thing to know is that even if 4 * 2.5 is 10, the result is stored as float, because one of the operands is a float (2.5).
+Here are some rules for integers:
+
+An integer must have at least one digit
+An integer must not have a decimal point
+An integer can be either positive or negative
+Integers can be specified in three formats: decimal (10-based), hexadecimal (16-based - prefixed with 0x) or octal (8-based - prefixed with 0)
+PHP has the following functions to check if the type of a variable is integer:
+
+is_int()
+is_integer() - alias of is_int()
+is_long() - alias of is_int()
+
+// Check if the type of a variable is integer   
+$x = 5985;
+var_dump(is_int($x));//output : bool(true)
+$x = 59.85;
+var_dump(is_int($x)); //output : bool(false) 
+}}}}}}}}}}}}}}}}}}}}}}
+
+
+PHP Floats
+{{{{{{{{{{{{{{{{{{{{
+A float is a number with a decimal point or a number in exponential form.
+2.0, 256.4, 10.358, 7.64E+5, 5.56E-5 are all floats.
+The float data type can commonly store a value up to 1.7976931348623E+308 (platform dependent), and have a maximum precision of 14 digits.
+PHP has the following functions to check if the type of a variable is float:
+is_float()
+is_double() - alias of is_float()
+}}}}}}}}}}}}}
+
+
+is_finite(), is_infinite()
+NaN stands for Not a Number.
+is_nan()
+
+
+
+// Check if the variable is numeric   
+$x = 5985;
+var_dump(is_numeric($x));
+output ==> bool(true)
+
+$x = "5985";
+var_dump(is_numeric($x));
+output ==> bool(true)
+
+$x = "59.85" + 100;
+var_dump(is_numeric($x));
+output ==> bool(true)
+
+$x = "Hello";
+var_dump(is_numeric($x));
+output ==> bool(false)
+
+
+
+PHP Casting Strings and Floats to Integers:
+// Cast float to int 
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+output ==> 23465
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
+output ==> 23465
+
+
+echo(pi()); // returns 3.1415926535898
+echo(min(0, 150, 30, 20, -8, -200));  // returns -200
+echo(max(0, 150, 30, 20, -8, -200));  // returns 150
+echo(abs(-6.7));  // returns 6.7
+echo(sqrt(64));  // returns 8
+echo(round(0.60));  // returns 1
+echo(round(0.49));  // returns 0
+echo(rand()); ==> generates a random number
+echo(rand(10, 100)); ==> random integer between 10 and 100 (inclusive)
+Complete PHP Math Referenc : https://www.w3schools.com/php/php_ref_math.asp
+
+
+PHP Constants :
+{{{{{{{{{{{{{{{{{{{{{{{{{{
+ variables except that once they are defined they cannot be changed or undefined.
+To create a constant, use the define() function.
+define(name, value, case-insensitive)
+name: Specifies the name of the constant
+value: Specifies the value of the constant
+case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false
+
+Create a constant with a case-sensitive name:
+<?php
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+?>
+
+
+Create a constant with a case-insensitive name:
+<?php
+define("GREETING", "Welcome to W3Schools.com!", true);
+echo greeting;
+?>
+
+
+Create an Array constant:
+
+<?php
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+?>
+
+Constants are Global : Constants are automatically global and can be used across the entire script.
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+
+function myTest() {
+  define("GREETING", "Welcome to W3Schools.com!");
+}
+ 
+myTest();
+echo GREETING;
+?> 
+
+
+
+or
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+define("GREETING", "Welcome to W3Schools.com!");
+
+function myTest() {
+  echo GREETING;
+}
+ 
+myTest();
+?> 
+
+</body>
+</html>
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+define("week",7);
+echo week;
+output:7
+
+
+boolen: 
+
+$new_user = false;
+$old_user = false;
+if ($new_user == true && $old_user == false)
+{
+echo "Welcome! New user";
+}
+else if ($new_user == false && $old_user == true)
+{
+echo "Namaste! Old user";
+}
+else if ($new_user == false && $old_user == false)
+{
+    echo "You are neither new nor old user.Can i have Identification Please ???";
+}
+echo "<hr>";
+
+?>
+
+output:
+Welcome
+Namaste
+Identification Please ???
+Identification Please ???
+Welcome! New user
+Namaste! Old user
+You are neither new nor old user.Can i have Identification Please ???
+ByeBye
+
+
+PHP Operators
+Operators are used to perform operations on variables and values.
+
+PHP divides the operators in the following groups:
+
+Arithmetic operators :+, -, *, /, %, **(Exponentiation) ==> $x = 10; $y = 3; echo $x ** $y; ==> 1000
+Assignment operators : =, += ,-= , *= , /=, %=  ==> $x = 15; $x %= 4; echo $x;==> 3
+Comparison operators : ==, ===, !=, !==, >, <, >=, <=, <=>
+Increment/Decrement operators:
+	++$x	Pre-increment	Increments $x by one, then returns $x	==> $x=$x+1
+	$x++	Post-increment	Returns $x, then increments $x by one	
+	--$x	Pre-decrement	Decrements $x by one, then returns $x	==> $x=$x-1
+	$x--	Post-decrement	Returns $x, then decrements $x by one
+Logical operators: and, or, xor, &&, ||, !
+difference between and and || in php
+$bool = TRUE and FALSE;
+   echo ($bool ? 'true' : 'false'), "\n";
+   $bool = TRUE && FALSE;
+   echo ($bool ? 'true' : 'false');
+output:
+   true
+   false
+
+difference between or and II in php
+$a = false || true;
+$b = false or true;
+
+var_dump($a);
+var_dump($b);
+output:
+   true
+   false
+
+
+
+String operators : ., .=
+
+Array operators : ==, ===, !=, !==, <>, +
+$x = array("a" => "red", "b" => "green");  
+$y = array("c" => "blue", "d" => "yellow");  
+
+print_r($x + $y); // union of $x and $y
+
+Conditional assignment operators:
+ // if empty($user) = TRUE, set $status = "anonymous"
+   echo $status = (empty($user)) ? "anonymous" : "logged in";
+   echo("<br>");
+
+   $user = "John Doe";
+   // if empty($user) = FALSE, set $status = "logged in"
+   echo $status = (empty($user)) ? "anonymous" : "logged in";
+
+
+
+
+PHP if...else...elseif Statements
+if (condition) {
+  code to be executed if condition is true;
+}
+
+<?php
+$favcolor = "red";
+
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+?>
+
+
+PHP Loops:
+while - loops through a block of code as long as the specified condition is true
+do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+<?php 
+$x = 1;
+
+do {
+  echo "The number is: $x <br>";
+  $x++;
+} while ($x <= 5);
+echo "The number is: $x <br>";
+?>
+
+for - loops through a block of code a specified number of times
+foreach - loops through a block of code for each element in an array
+
+
+for vs while
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php  
+$x = 1;
+ 
+while($x <= 5) {
+  echo "The number is: $x <br>";  
+  $x++;
+} 
+echo "final ".$x."<br>";
+
+for ($x = 1; $x <= 5; $x++) {
+  echo "The number is: $x <br>";
+}
+echo "final ".$x;
+
+?>  
+
+</body>
+</html>
+
+
+output
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+final 6
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+final 6
+
+
+
+when we know number  of iteration : for
+when we dont know number of iteration : while
+
+for loop:
+for ($x = 1; $x <= 5; $x++) {
+  echo "The number is: $x <br>";
+}
+
+while loop:
+<?php  
+$x = 1;
+while($x <= 5) {
+  echo "The number is: $x <br>";
+  $x++;
+} 
+?> 
+
+or
+
+<?php  
+$x = 1;
+while($x <= 5) {
+  $x++;
+  echo "The number is: $x <br>";
+} 
+?> 
+
+for loop: if condition not satisfied : loop run infinity  ???
+while loop: if condition not satisfied : compilation error ????
+
+
+$x = 1;
+ 
+while($x != 0) {
+  $x++;
+  echo "The number is: $x <br>";
+  
+} 
+
+
+
+PHP foreach Loop
+The foreach loop - Loops through a block of code for each element in an array.
+The PHP foreach Loop
+The foreach loop works only on arrays, and is used to loop through each key/value pair in an array.
+Syntax
+foreach ($array as $value) {
+  code to be executed;
+}
+
+
+<?php
+$colors = array("red", "green", "blue", "yellow");
+foreach ($colors as $value) {
+  echo "$value <br>";
+}
+?>
+
+
+<?php
+$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach($age as $x => $val) {
+  echo "$x = $val<br>";
+}
+?>
+
+output:
+Peter = 35
+Ben = 37
+Joe = 43
+
+
+break:
+<?php  
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+
+output:
+The number is: 0
+The number is: 1
+The number is: 2
+The number is: 3
+
+continue:
+<?php  
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+
+output:
+The number is: 0
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 5
+The number is: 6
+The number is: 7
+The number is: 8
+The number is: 9
+
+different loop for different sinario
+when we know number  of iteration : for : entry_control_loop
+when we dont know number of iteration : while : entry_control_loop
+when we want execute statement atleast once either condition is true/false : do while : exit_control_loop
+
+PHP Functions :
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
+The real power of PHP comes from its functions.
+PHP has more than 1000 built-in functions, and in addition you can create your own custom functions.
+
+1.>Built_in_functions : echo,strlen()
+
+2.>User_Defined_Functions
+Syntax
+function functionName() {
+  code to be executed;
+}
+
+example:
+<?php
+function writeMsg() {
+  echo "Hello world!";
+}
+writeMsg(); // call the function
+?>
+output : Hello world!
+
+PHP Function Arguments:
+<?php
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim");
+familyName("Borge");
+?>
+
+<?php
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+?>
+
+<?php
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is NOT enabled "5 days" is changed to int(5), and it will return 10
+?>
+output : 10
+
+strict in data type:
+<?php declare(strict_types=1); // strict requirement
+
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days"); 
+// since strict is enabled and "5 days" is not an integer, an error will be thrown
+?>
+output : error
+
+PHP Default Argument Value:
+Example
+<?php 
+function setHeight(int $minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+?>
+
+PHP Functions - Returning values:
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+output : 5 + 10 = 15
+
+
+PHP Return Type Declarations : https://www.youtube.com/watch?v=0MYqGSplVQs
+function addNumbers(float $a) : int{
+  return $a
+}
+echo addNumbers(1.2);
+output : 1
+
+????????
+{{{{{
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo gettype(addNumbers(1.2, 5.2)); 
+?>
+
+
+function addNumbers(float $a, float $b) : float {
+  $z = $a + $b;
+  return $z ;
+}
+echo gettype(addNumbers(1.2, 5.2)); 
+?>
+
+function addNumbers(float $a, float $b) : float {
+  $z = $a + $b;
+  return $z ;
+}
+addNumbers(1.2, 5.2)
+echo gettype(addNumbers); 
+?>
+
+
+
+<?php 
+	function say_hello()
+	{
+		echo "<h1>Hello World</h1>";
+	}
+	say_hello();
+ ?>
+<hr>
+
+
+ <?php 
+	function say_hello_to($name)
+	{
+		echo "Hello $name"."<br>";
+	}
+	say_hello_to("Humans"); //say_hello_to("Humans")."<br>";....line doesnt break by this so break in line 13....s
+	say_hello_to("Being");
+ ?>
+<hr>
+
+
+<?php 
+	function say_to($person)
+	{
+		echo "Hello $person"."<br>";
+	}
+	$person="Birkhe";
+	say_to($person);
+ ?>
+ <hr>
+
+
+ <?php 
+	function add($x,$y)
+	{
+		$sum=$x+$y;
+		return $sum;
+	}
+	$result=add(5,6);
+	echo "Answer : $result"."<br>";
+
+	echo "Answer : ".add(3,56);
+ ?>
+<hr>
+
+
+ <?php 
+	function add_sub($x,$y)
+	{
+		$plus=$x+$y;
+		$minus=$x-$y;
+		return [$plus,$minus];
+	}
+	$result=add_sub(5,6);
+	echo "Answer : $result[0]<br>";
+	echo "Answer : $result[1]<br>";
+ ?>
+<hr>
+
+
+  <?php 
+	function calculus($x,$y)
+	{
+		$plus=$x+$y;
+		$minus=$x-$y;
+		return [$plus,$minus];
+	}
+	list($a,$b)=calculus(5,6);//lists
+	echo "$a<br>";
+	echo "$b";
+ ?>
+
+output:
+Hello World
+Hello Humans
+Hello Being
+Hello Birkhe
+Answer : 11
+Answer : 59
+Answer : 11
+Answer : -1
+11
+-1
+
+
+
+}}}}
+
+
+Passing Arguments by Reference:
+
+In PHP, arguments are usually passed by value, which means that a copy of the value is used in the function and the variable that was passed into the function cannot be changed.
+When a function argument is passed by reference, changes to the argument also change the variable that was passed in. To turn a function argument into a reference, the & operator is used:
+
+<?php
+function add_five(&$value) {
+  $value += 5;
+}
+$num = 2;
+add_five($num);
+echo $num;
+?>
+Output : 7
+
+<?php
+function add_five($value) {
+  $value += 5;
+}
+$num = 2;
+add_five($num);
+echo $num;
+?>
+output : 2
+
+$myVar = "Hi there";
+$anotherVar = $myVar;
+$anotherVar = "See you later";
+echo $myVar; // Displays "Hi there"
+echo $anotherVar; // Displays "See you later"
+OutPut : Hi thereSee you later
+
+<?php 
+$myVar = "Hi there";
+$anotherVar =& $myVar;
+$anotherVar = "See you later";
+echo $myVar; // Displays "See you later"
+echo $anotherVar; // Displays "See you later"
+?>
+OutPut : See you laterSee you later
+
+$myVar and $anotherVar now both point to the same value.
+
+You delete a reference using the unset() 
+
+
+$myVar = "Hi there";
+$anotherVar =& $myVar;
+$anotherVar = "See you later";
+unset( $anotherVar );
+echo $myVar; // Displays "See you later"
+The value remains in memory until you unset all references to it, including the original variable:
+
+$myVar = "Hi there";
+$anotherVar =& $myVar;
+$anotherVar = "See you later";
+unset( $anotherVar );
+unset( $myVar );
+echo $myVar; // Displays ""
+
+https://www.elated.com/php-references/
+}}}}}}}}}}}}}}}}}}}}}}}
+
+
+PHP Arrays
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
+An array stores multiple values in one single variable:
+Example
+<?php
+$cars = array("Volvo", "BMW", "Toyota");
+echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+?>
+
+
+count() : Get The Length of an Array
+
+An array can hold many values under a single name, and you can access the values by referring to an index number.
+array();
+Indexed arrays - Arrays with a numeric index :
+$cars = array("Volvo", "BMW", "Toyota");
+or the index can be assigned manually:
+$cars[0] = "Volvo";
+$cars[1] = "BMW";
+$cars[2] = "Toyota";
+
+Associative arrays - Arrays with named keys : $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+<?php
+$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach($age as $x => $x_value) {
+  echo "Key=" . $x . ", Value=" . $x_value;
+  echo "<br>";
+}
+?>
+
+Multidimensional arrays - Arrays containing one or more arrays
+$cars = array (
+  array("Volvo",22,18),
+  array("BMW",15,13),
+  array("Saab",5,2),
+  array("Land Rover",17,15)
+);
+echo $cars[0][0].": In stock: ".$cars[0][1].", sold: ".$cars[0][2].".<br>";
+output : Volvo: In stock: 22, sold: 18.
+
+
+
+
+
+PHP - Sort Functions For Arrays
+In this chapter, we will go through the following PHP array sort functions:
+
+sort() - sort arrays in ascending order
+rsort() - sort arrays in descending order
+asort() - sort associative arrays in ascending order, according to the value
+ksort() - sort associative arrays in ascending order, according to the key
+arsort() - sort associative arrays in descending order, according to the value
+krsort() - sort associative arrays in descending order, according to the key
+
+
+<?php
+
+    echo "Hello World I am Array in Php!<hr>";
+    
+    //Indexed Array
+    $data1 = array("Hari","Bahadur","16");
+    echo " I am index array ! ......";
+    echo $data1[0];
+    echo $data1[1]."_";
+    echo $data1[2]."<hr>";
+    
+    //Associative Array
+    $data2 = array("fname" => "Hari", "lname" => "Bahadur", "age" => 16);
+    echo " I am associative array ! ......";
+    echo $data2["fname"];
+    echo $data2["lname"]."_";
+    echo $data2["age"]."<br><br>";
+
+    echo " I am another method of associative array ! ......";
+    $data21["fname"] = "Hari";
+    $data21["lname"] = "Bahadur";
+    $data21["age"] = "16";
+    print_r($data21);
+    echo "<hr>";
+
+    //MultiDimensional arrays
+    $data3 = array(array(777,999,555),"Hari","Harry");
+    echo " I am another method of associative array ! ......";
+    echo "<br>".$data3["1"]."<br>";
+    print_r($data3);
+    echo "<br>".$data3[0][0];
+    echo "<br>".$data3[0][1];
+    echo "<br>".$data3[0][2];
+    echo "<br>".$data3[1];
+    echo "<br>".$data3[2];
+
+?>
+
+
+output:
+Hello World I am Array in Php!
+I am index array ! ......HariBahadur_16
+I am associative array ! ......HariBahadur_16
+
+I am another method of associative array ! ......Array ( [fname] => Hari [lname] => Bahadur [age] => 16 )
+I am another method of associative array ! ......
+Hari
+Array ( [0] => Array ( [0] => 777 [1] => 999 [2] => 555 ) [1] => Hari [2] => Harry )
+777
+999
+555
+Hari
+Harry
+
+
+
+
+
+
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+PHP Global Variables - Superglobals
+Some predefined variables in PHP are "superglobals", which means that they are always accessible, regardless of scope - and you can access them from any function, class or file without having to do anything special.
+
+The PHP superglobal variables are:
+
+$GLOBALS
+$_SERVER
+$_REQUEST
+$_POST
+$_GET
+$_FILES
+$_ENV
+$_COOKIE
+$_SESSION
+
+
+
+PHP Form Handling:
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
+
+
+<html>
+<body>
+<form action="welcome.php" method="post">
+Name: <input type="text" name="name"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>
+</body>
+</html>
+
+When the user fills out the form above and clicks the submit button, the form data is sent for processing to a PHP file named "welcome.php". The form data is sent with the HTTP POST method.
+
+To display the submitted data you could simply echo all the variables. The "welcome.php" looks like this:
+
+
+<html>
+<body>
+Welcome <?php echo $_POST["name"]; ?><br>
+Your email address is: <?php echo $_POST["email"]; ?>
+</body>
+</html>
+
+Welcome John
+Your email address is john.doe@example.com
+
+
+Think SECURITY when processing PHP forms!
+This page does not contain any form validation, it just shows how you can send and retrieve form data.
+However, the next pages will show how to process PHP forms with security in mind! Proper validation of form data is important to protect your form from hackers and spammers!
+
+
+Get vs POST : https://www.w3schools.com/tags/ref_httpmethods.asp
+Both GET and POST create an array (e.g. array( key1 => value1, key2 => value2, key3 => value3, ...)). This array holds key/value pairs, where keys are the names of the form controls and values are the input data from the user.
+$_GET is an array of variables passed to the current script via the URL parameters.
+$_POST is an array of variables passed to the current script via the HTTP POST method.
+
+Moreover POST supports advanced functionality such as support for multi-part binary input while uploading files to server.
+
+what is bookmark?
+
+
+
+
+form1:
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Ticket reservation system</title>
+
+<style>
+  #errorpara
+  {
+    color : red;
+  }
+</style>
+</head>
+
+<body>
+    <h1>Ticket Reservation System</h1>
+
+    <p id ="errorpara"></p>
+
+    <form  onsubmit= "return validate()">
+    <pre>
+    FirstName        : <input type="text"   name="fname"    id ="ffnaam"        placeholder = "Enter your firstname"><br/>
+    LastName         : <input type="text"   name="lname"    id ="llnaam"        placeholder = "Enter your lastname"><br/>
+    Nationality      : <input type="text"   name="nality"   id="nality"      placeholder="Enter the nationality"><br/>
+    Gender           : <input type="radio"  name ="gender">Male  <input type="radio" name ="gender">Female <br/>
+    Destination From : <input type="text" id="destfrom">  To : <input type="text" id="destto"><br/>
+    Contact Number   : <input type="number" name="contact"  id ="phunno"><br/>
+    Email            : <input type="email"  name="email"    id ="emailaddress"><br/>
+    Departure Date   : <input type="date"                   id ="depdate"><br/>
+    Return Date      : <input type="date"                   id ="retdate"><br/>
+    <br>
+    <input type="submit" value="Submit">
+    </pre>
+    </form>
+</body>
+
+<script>
+      function validate()
+      {
+        var a = document.getElementById("ffnaam").value;
+        var b = document.getElementById("llnaam").value;
+        var c = document.getElementById("nality").value;
+        var d = document.getElementById("destfrom").value;
+        var e = document.getElementById("destto").value;
+        var f = document.getElementById("phunno").value;
+        var g = document.getElementById("emailaddress").value;
+        var h = document.getElementById("depdate").value;
+        var i = document.getElementById("retdate").value;
+        var message ="";
+        var error = 0;
+
+        if (a == "")
+        {
+          message+= "FirstName cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (b == "")
+        {
+          message += "LastName cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (c == "")
+        {
+          message +="Nationality cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (d == "")
+        {
+          message +="Destination_From cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (e == "")
+        {
+          message +="Destination_To cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (f == "")
+        {
+          message +="Phone number cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (g == "")
+        {
+          message +="Email address cannot be empty. <br>";
+          error = 1;
+        }
+
+        if (h == "")
+        {
+          message +="Departure Date cannot be empty <br>";
+          error = 1;
+        }
+
+        if (i == "")
+        {
+          message +="Return Date cannot be empty <br>";
+          error = 1;
+        }
+
+
+        if (error == 1)
+        {
+          document.getElementById("errorpara").innerHTML = message;
+          return false; //You use return false to prevent something from happening. So if you have a script running on submit then return false will prevent the submit from working. When a return statement is called in a function, the execution of this function is stopped. If specified, a given value is returned to the function caller.
+        }
+      }
+</script>
+</html>
+
+
+form2:
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		#error-msg {
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<form action="" onsubmit="return validate()">
+
+		<h2><b><u>Registration Form</u></b></h2>
+		<p id="error-msg"></p>
+
+		First Name<br><input type="text" name="first_name" id="fname"><br><br>
+		Last Name<br><input type="text" name="Last_name" id="lname"><br><br>
+		User Name<br><input type="text" name="user_name" id="uname"><br><br>
+		Password<br><input type="password" name="password" id="pass"><br><br>
+		Confirm password<br><input type="password" name="password" id="cpass"><br><br>
+		<button type="submit">Submit</button>
+		<button type="reset" onclick="clearAll()">Reset</button>
+		<!-- ...........type reset will clear all the inputed data by default -->
+
+	</form>
+
+	<script>
+		function validate() {
+			//alert("Here I am");
+			var message = "";
+			var error = 0;
+			var firstname = document.getElementById("fname").value;
+			var lastname = document.getElementById("lname").value;
+			var username = document.getElementById("uname").value;
+			var password = document.getElementById("pass").value;
+			var confirmpassword = document.getElementById("cpass").value;
+
+			//alert(firstname+lastname+username+password+confirmpassword);
+
+			if (firstname == "") {
+				message += "first name is required.<br>";
+				error = 1;
+			}
+			if (username == "") {
+				message += "user name is required.<br>";
+				error = 1;
+			}
+			if (password == "") {
+				message += "password is required.<br>";
+				error = 1;
+			}
+			if (username == password) {
+				message += "username and password shouldnot be same.<br>";
+				error = 1;
+			}
+			if (password != confirmpassword) {
+				message += "password and confirm-password should be same.<br>";
+				error = 1;
+			}
+			if (password.length < 8) {
+				message += "Password should be at least 8 character.<br>";
+				error = 1;
+			}
+			var letters = /^[0-9a-zA-Z]+$/
+			if (!username.match(letters)) {
+				message += "The username should be alpha-neumeric character only.<br>";
+				error = 1;
+			}
+			if (error == 1) {
+				document.getElementById("error-msg").innerHTML = message;
+				return false;
+			}
+		}
+		function clearAll() // this function clears error paragraph
+		{
+			document.getElementById("error-msg").innerHTML = "";
+		}
+	</script>
+</body>
+
+</html>
+
+
+form3:
+<DOCTYPE html>
+<html>
+<head>
+<title>IFA</title>
+</head>
+<body>
+
+<table border="3"  width="500">
+<tr>
+<td>
+			<form  action="#"  method="GET/POST" >
+<center>
+<table border="3">
+	<tr>
+	<td>
+		<center><u><h4>Registration Form</h2></u></center>
+	</td>
+	</tr>
+</table>
+
+<hr>
+
+<table border="3">
+	<tr>     
+	<td>First Name</td><td><b>:</b></td><td><input type="text"  name="name"  maxlength="10"  size="25"  placeholder="Enter your firstname"	required></td><br>	
+	</tr> 
+	<tr> 
+	<td>Middle Name</td><td><b>:</b></td>  <td> <input type="text"    name="mname"   placeholder="Enter your firstname" > </td> <br>
+	</tr> 
+	<tr> 
+	<td>Last Name </td><td><b>:</b></td>  <td> <input type="text"       name="lname"       placeholder="Enter your firstname">  </td><br>
+	</tr> 
+	<tr> 
+	<td>Email </td><td><b>:</b></td> <td>  <input type="text"              name="email"             value="@gamil.com"> </td><br>
+	</tr> 
+	<tr> 
+	<td>Password</td><td><b>:</b></td> <td> <input type="text"         name="password"       ></td><br>
+	</tr> 
+	<tr> 
+	<td>About me </td><td><b>:</b></td> <td> <textarea	           name="about"  rows="10"  cols="40"> ................. </textarea> </td> <br>
+	</tr> 
+</table>
+
+<hr>
+
+<table border="3">
+	<tr> 
+	<td>
+		Gender:
+			<input type="radio"  name="a" > Male	
+			<input type="radio"  name="a" > Female
+			<input type="radio"  name="a" > Other<br>
+	</td>	
+	</tr> 
+</table>
+
+<hr>
+<table border="3">
+	<tr> 
+	<td>
+		Interests:<br>
+			<!-- ignored
+			<input type="checkbox">abcdefg
+			-->
+			<input type="checkbox"  name="a"  value="1/on"> Sports <br>	
+			<input type="checkbox"  name="b"  value="1" > Arts<br>
+			<input type="checkbox"  name="c"  value="1"> Music<br>
+			<input type="checkbox"  name="d"  value="1"> Science<br>
+	</td>
+	</tr>
+</table>
+<hr>
+<b>Choose a Subject:</b>
+<select name="subject" size="3" multiple="multiple" required="required">
+	<option  value="ifa"  selected="selected">	IFA	</option>
+	<option  value="ifa"  >DiscreatMath</option>
+	<option  value="ifa"  >		Math-I  		</option>
+	<option  value="ifa"  >		Business English	</option>
+	<option  value="ifa"  >		BCA			</option>
+</select> 
+<hr>
+<table border="3">
+	<tr>
+	<td colspan="3">
+				<center> <input type="submit" value="Register">  </center>
+	</td>
+	</tr>
+</table>
+</center>
+</form>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+form php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POST Form</title>
+</head>
+<body>
+
+<form action="8.Ppost.php" method="post">
+	<label >Name : </label>
+	<input type="text" name="Name">
+	<br>
+	<label>Address : </label>
+	<input type="text" name="Address">
+	<br>
+	<input type="submit" name="Register">
+</form>
+output:
+Name : 
+Address : 
+
+
+<!-- when u click submit it will send the form-data by post method to the file name 8.Ppost.php -->
+
+<?php 
+$name = $_POST["Name"];
+$address = $_POST["Address"];
+echo "Name : {$name}<br/>";
+echo "Address : {$address}<br/>";
+ ?>
+output:
+Name : 
+Address : 
+
+
+
+
+<?php 
+	Float : echo $float=3.7891."<br>";
+	Integer : echo $integer=7.123
+ ?>
+output:
+3.7891
+7.123
+//here Float : and Integer : doesnot get print in screen caz php demands echo
+
+
+ <?php 
+ 	echo "Round : ".round ($float,2)."<br>";
+ 	echo "Ceiling : ".ceil($float)."<br>";
+  	echo "Floor : ".floor($float)
+  ?>
+ <hr>
+
+ <?php 
+ 	echo "Is {$integer} integer?"."<br>";
+ 	echo "Is ".$float." integer?"."<br>";//???
+  	echo "Is {$float}float?";//???output cheak
+  ?>
+output:
+Round : 3.79
+Ceiling : 4
+Floor : 3
+Is 7.123 integer?
+Is 3.7891
+integer?
+Is 3.7891
+float?
+
+
+
+<?php 
+	$first="Hello,Namaste and Goodmorning!!!";
+	$second="ma hu Nepali Babu made in Nepala.....lai...bari lai!!";
+	$third=$first;
+	$third=$second;
+	echo $third."<br>";
+	echo $first." --- ".$second;
+	$fourth="AmiR"
+ ?>
+
+ <hr>
+ <br>
+
+<?php 
+	echo strtolower($fourth)."<br>";
+	echo strtoupper($fourth)."<br>";
+	echo ucfirst($second)."<br>";
+	echo ucwords($second)."<br>";
+ ?>
+
+ <hr>
+ <br>
+
+ <?php 
+ 	echo strlen($fourth)."<br>";
+ 	echo "A".trim(" B C D ")."E"."<br>";//remove space infront of B nad after D..
+ 	echo strstr($first,"e")."<br>";
+ 	echo str_replace("Hello","Syaudai",$first);
+  ?>
+
+ <hr>
+ <br>
+
+<?php 
+	echo str_repeat($fourth,3)."<br>";
+	echo substr($first,5,1)."<br>";
+	echo substr($first,5,2)."<br>";
+	echo substr($first,5,10)."<br>";
+	echo strpos($first,"and")."<br>";
+	echo strchr($first,"d")."<br>";
+ ?>
+
+ <hr>
+ <br>
+
+
+output:
+ma hu Nepali Babu made in Nepala.....lai...bari lai!!
+Hello,Namaste and Goodmorning!!! --- ma hu Nepali Babu made in Nepala.....lai...bari lai!!
+
+amir
+AMIR
+Ma hu Nepali Babu made in Nepala.....lai...bari lai!!
+Ma Hu Nepali Babu Made In Nepala.....lai...bari Lai!!
+
+4
+AB C DE
+ello,Namaste and Goodmorning!!!
+Syaudai,Namaste and Goodmorning!!!
+
+AmiRAmiRAmiR
+,
+,N
+,Namaste a
+14
+d Goodmorning!!!
+
+ 
+
+
+isset() ==> index and button
+
+<form action="" method="POST">
+<label>Enter Your Name Please:</label>
+<input type="text"name=" name_entered" />
+<br><br>
+<input type="submit" name="submitbutton" value="Submit"/>
+</form>
+
+<?php
+$name= $_POST['name_entered'];//......line1
+$submitbutton= $_POST['submitbutton'];//......line2
+if ($submitbutton)
+{
+    if (!empty($name)) 
+        {
+        echo 'The name you entered is ' . $name;
+        }
+    else 
+        {
+        echo 'You did not enter a name. Please enter a name into this form field.';
+        }
+}
+?>
+
+<!-- //here it will show error  as undefine index name_entered in $_POST['name_entered'] in line 1 and undefine index submitbutton in $_POST['submitbutton'] in line 2.
+
+Notice: Undefined index: name_entered in C:\xampp\htdocs\Root Folder of PHP Practise\1.Procedual PHP\2.Super_Global_Variable\Check if button is clicked or not using POST method.php on line 11
+
+Notice: Undefined index: submitbutton in C:\xampp\htdocs\Root Folder of PHP Practise\1.Procedual PHP\2.Super_Global_Variable\Check if button is clicked or not using POST method.php on line 12
+
+This is because untill and unless you click submitbutton :
+$name is not set as index name_entered in line1 inside $_POST[] variable is not defined,
+$submitbutton is not set as index submitbutton in line2 inside $_POST[] variable is not defined,
+OR are not posted.
+so firstly you have to check if the name of button is set or not 
+before u calling inside php where index inside post method is set olny when submitbutton is clicked. -->
+
+
+
+<!-- example : 2 -->
+<!-- 
+<form method="POST">
+<label>Enter Your Name Please:</label>
+<input type="text"name="name_entered" />
+<br><br>
+<input type="submit" name="submitbutton" value="Submit"/>
+</form>
+
+<?php
+// if (isset($_POST['name_entered']))
+// if (isset($_POST['submitbutton']) && isset($_POST['name_entered']))
+if (isset($_POST['submitbutton']))
+    {
+        echo "Your saved Name is ".$_POST['name_entered'];
+    }
+else 
+    {
+        echo 'You have not saved';
+    }
+?> -->
+
+
+
+
+
+
+
+
+summary
+<?php
+    $name = "SimbA";
+    echo $name." RoarrrrrR<br>";
+
+    echo var_dump($name)."<br>";//datatype with length
+
+    $condition = True;
+    echo var_dump($condition)."<br>";//datatype with value
+
+    define ("name","Hari");
+    echo name."<br>";
+
+    echo "<br>";
+
+    //If Else
+    $a=5;
+    $b=7;
+    $c=9;
+    if ($a>$b && $a>$c)
+    {
+        $greater="a".$a;
+    }
+    else if ($b>$a && $b>$c)
+    {
+        $greater="b".$b;
+    }
+    else
+    {
+        $greater="c".$c;
+    }
+    echo $greater;
+
+    $age=21;
+    if($age>=18)
+    {
+        echo "<br>Your age ".$age." is prefer for voting.<br>";
+    }
+
+    echo "<br>";
+
+    //Switch Case
+    $daynumber=3;
+    switch($daynumber)
+    {
+        case 1:
+        echo "Sunday";
+        case 2:
+        echo "Monday";
+        case 3:
+        echo "Tuesday";
+        case 4:
+        echo "Wednusday";
+        case 5:
+        echo "Thursday";
+        case 6:
+        echo "Friday";
+        case 7:
+        echo "Saturday";
+    }
+
+echo "<br>";
+
+    $daynumber=3;
+    switch($daynumber)
+    {
+        case 1:
+        echo "Sunday";
+        break;
+        case 2:
+        echo "Monday";
+        break;
+        case 3:
+        echo "Tuesday";
+        break;
+        case 4:
+        echo "Wednusday";
+        break;
+        case 5:
+        echo "Thursday";
+        break;
+        case 6:
+        echo "Friday";
+        break;
+        case 7:
+        echo "Saturday";
+        break;
+    }
+
+    echo "<br>";
+
+    $daynumber=9;
+    switch($daynumber)
+    {
+        case 1:
+        echo "Sunday";
+        break;
+        case 2:
+        echo "Monday";
+        break;
+        case 3:
+        echo "Tuesday";
+        break;
+        case 4:
+        echo "Wednusday";
+        break;
+        case 5:
+        echo "Thursday";
+        break;
+        case 6:
+        echo "Friday";
+        break;
+        case 7:
+        echo "Saturday";
+        break;
+        default:
+        echo "Input a number from 1-7!";
+    }
+
+    echo "<br><br>";
+
+    //Loop
+    $x=1;
+    while($x<=10)//until value of x is smaller than 10 or equal to 10 echo x and increament
+    {
+        echo $x." ";
+        $x++;
+    }
+
+    // echo "<br>";
+
+    // $x=15;
+    // while($x>=10)
+    // //until value of x is greater than 10 or equal to 10 
+    // //echo x and increament
+    // //which means at begining value of x is 15 so it will echo 15 
+    // //and increament take place and value of x becomes 16
+    // //now when loop runs again value of x is 16 which satisfies the condition ($x>=10)
+    // //where value of x is 16 and is greater than 10 and echo 16 
+    // //so this goes on  infinity... as all increament of 15 is greater than 10...
+    // {
+    //     echo $x." ";
+    //     $x++;
+    // }
+
+    
+    echo "<br>";
+
+    for ($x=1;$x<=10;$x++)
+    {
+        echo $x." ";
+    }
+
+    echo "<br>";
+
+    $x=1;
+    do
+    {
+        echo $x." ";
+        $x++;
+    }
+    while($x<=10);
+       
+    echo "<br><br>";
+
+    //Array
+    $name = array("Amir","Jimmy","Hema","Passang");
+    foreach ($name as $value)
+    echo $value."<br>";
+    rsort($name);//reverse the order of value of array
+    echo $value."<br>";//prints only value or first value of array as order of value of array is reversed it will print passang first
+    foreach ($name as $value)//and this foreach loop will make print/echo each values of array after reverse (rsort)
+    echo $value."<br>";
+    //sort(arg),rsort(arg)....In-bilud function
+    
+    echo "<br>";
+
+    //FunctioN
+    function printname()
+    {
+        echo "Name : Thor Jetha<br>";
+        echo "Address : AssGaud";
+    }
+    printname();
+           
+    echo "<br>";
+
+    //ArgumentFunction
+    function showname($name,$address)//here $address and $name is function varaible
+    {
+        echo "Parichaya : ".$name."<br>";
+        echo "Thegana : ".$address;
+    }
+    showname("Loki Kanxa","AssGaud");
+
+    echo "<br>";
+
+    function owname()
+    {
+        $name="Amir";//declear variable inside function
+        $address="Kapan";
+        echo "Parichaya : ".$name."<br>";
+        echo "Thegana : ".$address;
+    }
+    owname();
+
+    echo "<br>";
+
+    // $aa="Amir";//declear variable outside function
+    // $bb="Kapan";
+    // function loname($aa,$bb)    //here variable decleared outside the function cannot be passed as funtion argument so this is wrong
+    // {
+    //     echo "Parichaya : ".$aa."<br>";
+    //     echo "Thegana : ".$bb;
+    // }
+    // loname();
+
+    //so inorder to ovvercome above problem can use global varaible
+    $aa="Rima";//declear variable outside function
+    $bb="India";
+    function loname()//here variable decleared outside the function is not passed as funtion argument 
+    {
+        global $aa,$bb;//declearing variable as global variable
+        echo "NAME : ".$aa."<br>";
+        echo "ADDRESS : ".$bb;
+    }
+    loname();
+
+
+?>
+
+
+output:
+
+SimbA RoarrrrrR
+string(5) "SimbA"
+bool(true)
+Hari
+
+c9
+Your age 21 is prefer for voting.
+
+TuesdayWednusdayThursdayFridaySaturday
+Tuesday
+Input a number from 1-7!
+
+1 2 3 4 5 6 7 8 9 10
+1 2 3 4 5 6 7 8 9 10
+1 2 3 4 5 6 7 8 9 10
+
+Amir
+Jimmy
+Hema
+Passang
+Passang
+Passang
+Jimmy
+Hema
+Amir
+
+Name : Thor Jetha
+Address : AssGaud
+Parichaya : Loki Kanxa
+Thegana : AssGaud
+Parichaya : Amir
+Thegana : Kapan
+NAME : Rima
+ADDRESS : India
+
+
+
+
+
+PHP - Access Modifiers
+Properties and methods can have access modifiers which control where they can be accessed.
+
+There are three access modifiers:
+
+public - the property or method can be accessed from everywhere. This is default
+protected - the property or method can be accessed within the class and by classes derived from that class
+private - the property or method can ONLY be accessed within the class
+
+
+mysqli_real_escape_string() function escapes special characters in a string for use in an SQL query, taking into account the current character set of the connection.
+
+
+

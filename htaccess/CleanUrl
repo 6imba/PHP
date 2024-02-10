@@ -1,0 +1,20 @@
+http://www.desiquintans.com/cleanurls
+
+Internet bot :
+An Internet bot, web robot, robot or simply bot, is a software application that runs automated tasks over the Internet. Typically, bots perform 
+tasks that are simple and repetitive, much faster than a person could.
+
+web crawler :
+A search engine spider, also known as a web crawler, is an Internet bot that crawls websites and stores information for the search engine to index. 
+Think of it this way. When you search something on Google, those pages and pages of results can't just materialize out of thin air.
+
+And the really big reason as to why you should use clean URLS:
+They allow search engines to spider your site.
+
+Why are spiders so picky?
+Search engine spiders usually stay away from messy URLs because chances are the code is really bad on whatever script you use and the spider could 
+become stuck in a loop, requesting the same pages over and over and draining you of your bandwidth.
+
+.htaccess is your friend
+Anyway, how do we make our URLs clean? Well, you need a server that runs Apache. This solution only works for Apache servers, so Win2k users have 
+to go somewhere else for their kicks.

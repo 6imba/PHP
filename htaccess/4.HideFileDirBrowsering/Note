@@ -1,0 +1,5 @@
+Hide given file extension ==> IndexIgnore *.jfif
+As .htaccess of 1.file dont have IndexIgnore *.jfif it show Cartooon.jfif 
+Whereas .htaccess of 2.file have IndexIgnore *.jfif it ignores/hide Cartooon.jfif 
+
+IndexIgnore * ==> ignore all files even error files

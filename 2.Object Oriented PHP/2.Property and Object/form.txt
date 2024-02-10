@@ -1,0 +1,1 @@
+<form> =>button => 3.form.php => form (blank) => php => class => property/method define => object created => method call => got to function SetInfomation

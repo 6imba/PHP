@@ -1,0 +1,46 @@
+<form action="" method="POST">
+<label>Enter Your Name Please:</label>
+<input type="text"name=" name_entered" />
+<br><br>
+<input type="submit" name="submitbutton" value="Submit"/>
+</form>
+
+<?php
+$name= $_POST['name_entered'];//......line1
+$submitbutton= $_POST['submitbutton'];//......line2
+if ($submitbutton){
+if (!empty($name)) {
+echo 'The name you entered is ' . $name;
+}
+else {
+echo 'You did not enter a name. Please enter a name into this form field.';
+}
+}
+?>
+
+
+
+//here it will show error as undefine index name_entered in line 1 and submitbutton in line 2.This is because untill and unless you click submitbutton 
+inputs name (name_entered and submitbutton) are not set as index in line1 and line2 OR are not posted.so firstly you have to check if the name of button is set or not 
+before u calling inside php where index inside post method is set olny when submitbutton is clicked.
+
+
+therefore,
+
+<form method="POST">
+<label>Enter Your Name Please:</label>
+<input type="text"name=" name_entered" />
+<br><br>
+<input type="submit" name="submitbutton" value="Submit"/>
+</form>
+<?php
+if (isset($_POST['submitbutton']))
+    {
+        echo "Your saved Name is ".$_POST['name_entered'];
+    }
+else 
+    {
+        echo 'You have not saved';
+    }
+?>
+ 

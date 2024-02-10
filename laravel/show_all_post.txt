@@ -1,0 +1,74 @@
+use eloquent :
+ Post::find($id); ==> to find a single blog post with given id 
+ Post::all();  ==> pull all of the blog posts from the post table and store it in mentioned variable
+ $all_posts = Post::all();
+
+/create a variable and store all the blog posts in it from the database
+        $all_posts = Post::all();
+
+//return a view and pass in the above variable that has all the blog post
+        return view('posts.index1')->withPosts($all_posts);
+	return view('posts.index1')->with('allposts', $all_posts);
+
+Our controller is done. This all what we needed to create/route to the index page with all posts detial
+
+
+
+Name of routes for resources :
+posts.index
+posts.store
+posts.create  
+posts.show    
+posts.update  
+posts.destroy 
+posts.edit
+
+extra:
+route() is a helper that allow us to pass in a name of route and then automatically generate the urI of that route
+href="{{ route('posts.create') }}"  ===> href="posts/create"
+
+Now from : return view('posts.index1')->with('allposts', $all_posts); this :
+We go to index1.blade.php
+		1.
+                    @foreach ($allposts as $post)
+                        <tr>
+                            <th>{{ $post->id }}</th>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->description }}</td>
+                            <td>{{ $post->created_at }}</td>
+                            <td>
+                                <a href="" class="btn btn-default">View</a> 
+                                <a href="" class="btn btn-default">Edit</a>
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-light btn-sm">View</a> 
+                                <a href="" class="btn btn-light btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
+
+
+		2.
+		    <td>{{ substr($post->description, 0 ,50) }}</td>
+
+		3.
+		    <td> {{ substr($post->description, 0 ,50) }} {{ strlen($post->description)>50 ? "..." : "" }} </td>
+
+		4.
+                            <td>
+                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-light btn-sm">View</a> 
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-light btn-sm">Edit</a>
+                            </td>
+
+
+
+Extra:
+
+route() is a helper that allow us to pass in a name of route and then automatically generate the urI of that route
+href="{{ route('posts.create') }}"  ===> href="posts/create"
+or
+href="{{ route('posts.create') }}"  ===> go to PostControllers, public function create(){ return view('posts.create');} AND  then go to resources/view/posts/create
+
+return redirect()->route('posts.show', $post->id);
+href="{{ route('posts.show', $post->id) }}"
+href="{{ route('posts.edit', $post->id) }}"

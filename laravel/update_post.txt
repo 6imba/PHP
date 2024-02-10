@@ -1,0 +1,169 @@
+To update
+step 1 : display form and pull data from database into that form to see what currently is there.
+step 2 : update the data in database after we edit and submit current form
+
+like create and then store , edit then update
+
+
+
+To Edit :
+step 1 : display form and pull data from database into that form to see what currently is there.
+
+
+Inside PostConterller.php
+ public function edit($id)
+    {
+        //find the post in database and save it in a variable
+        $apost = Post::find($id);
+
+        //return the view and pass in the info of post that was previously pulled from database
+        return view('post.edit')->with('postinfo', $apost);  //redirect to edit.blade.php
+    }
+
+create new file edit.blade.php in resources/view/post
+
+edit.blade.php : 
+
+@section('content')
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ $postinfo->title }}</h1> {{-- here $postinfo is a variable holding post_info(i.e : id,title,decription : cloumn_name) , therefore $postinfo->title will display title of post --}}
+            <p class="lead"> {{ $postinfo->description }} </p> {{-- here $postinfo is a variable holding post_info(i.e : id,title,decription : cloumn_name) , therefore $postinfo->description will display description body of post --}}
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <dl>
+                    <dt>Created at : </dt>
+                    <dd>{{ date('F j, Y, g:i a', strtotime($postinfo->created_at)) }}</dd>
+                </dl>
+                <dl>
+                    <dt>Last updated : </dt>
+                    <dd>{{ date('F j, Y, g:i a', strtotime($postinfo->updated_at)) }}</dd>
+                </dl>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        {!! Html::linkRoute('posts.show', 'Cancel', [$postinfo->id], ['class' => 'btn btn-danger btn-block']) !!}
+                    </div>
+                    <div class="col-sm-6">
+                        {!! Html::linkRoute('posts.update', 'Save Chnages', [$postinfo->id], ['class' => 'btn btn-success btn-block']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+Now we need to make title and description area as a text field inorder to make some change
+
+step 1 : display form and pull data from database into that form to see what currently is there.
+
+Model form binding : we can pass a model form object from controller
+
+i.e
+In Controller :
+    public function edit($id)
+    {
+        //find the post in database and save it in a variable
+        $apost = Post::find($id); //$apost is a model object
+
+        //return the view and pass in the info of post that was previously pulled from database
+        return view('posts.edit')->with('postinfo', $apost); //pass model_object($apost) into view
+    }
+
+No in edit.blade.php 
+we have model object save in variable $apost,
+now we can bind the model object on to the form,
+and laravel is smart enough to know if there is already a value for  any column in table lie in title it will automatically fill it in the form if not it will leave empty
+it also know to set the form up 
+it knows field with title belong to title column of table
+
+In order to do this all we need form helper and download laravel collective form binders (see in part 11)
+
+
+{!! Form::model () !!} ==> we are opening the form and connecing to the model that we are passing in 
+{!! Form::model (model_object, ['route'=>[name_of_route, id_of_post]]) !!}
+{!! Form::model ($postinfo, ['route'=>['posts.update', $postinfo->id]]) !!}
+{{ Form::text('title', null, ["class"=>'form-control'])}}
+{{ Form::text('table_column_name', null, ["class"=>'form-control'])}}
+{{ Form::textarea('description', null, ["class"=>'form-control'])}}
+
+
+
+To update
+step 2 : update the data in database after we edit and submit current form
+        Not this {!! Html::linkRoute('posts.update', 'Save Chnages', [$postinfo->id], ['class' => 'btn btn-success btn-block']) !!} ==> this just takes you to posts.update file but doent submit the form So,
+	Instead : {{Form::submit('Save Chnages', ['class' => 'btn btn-success btn-block'])}}
+
+Now in PostController.php
+
+public function update(Request $request, $id)
+    {
+
+        //Validate the data
+
+        //save the data to the database
+
+	//set flash data with success message
+
+        //redirect to post.show with flash data
+
+    }
+
+
+Difference between store and update
+
+store:
+ $post =new Post;
+ store is saving brand new row in database table
+
+
+update:
+ $post = Post::find($id);
+ update is updating existing row of database table by grabbing that row from database table with id($id)
+
+
+Here we use $request to get the information from database table
+
+i.e,
+    public function update(Request $request, $id)
+    {
+
+        //Validate the data
+        $this->validate($request, array(
+            'title' => 'required|max:255', 
+            'description' => 'required'
+        ));
+
+        //save the data to the database
+        $updated_post = Post::find($id);
+
+        $updated_post->title = $request->input('title');
+        $updated_post->description = $request->input('description');
+        // table_column_name = http_request_name_submitted from form
+        //created at is same and laravel automaticaly save that
+        $updated_post->save();
+
+        //set flash data with success message
+        $request->session()->flash('success', 'The blog post was sucessfully saved !');
+
+        //redirect to post.show with flash data
+        return redirect()->route('posts.show', $updated_post->id);
+    }
+
+
+here,
+{!! Form::model ($postinfo, ['route'=>['posts.update', $postinfo->id]]) !!} gives error
+error : The POST method is not supported for this route. Supported methods: GET, HEAD, PUT, PATCH, DELETE.
+
+solution : mention method too,
+{!! Form::model ($postinfo, ['route'=>['posts.update', $postinfo->id], 'method'=>'PUT']) !!}
+first parameter : route
+second parameter : method
+
+posts.update route need PUT|PATCH method while form submission but by default POST method is requested so we need to manually define request as PUT
+posts.store need POST method while form submission by default POST method is requested so we no need to manually define it
+
+Finally edited and save. #Done
+
+

@@ -1,0 +1,9 @@
+.htaccess :
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+  RewriteEngine On
+  RewriteBase RootPHP/MVC/MVC_Framework_7/public
+  RewriteCond %{REQUEST_FILENAME} !-d //search for requested file in browser by user
+  RewriteCond %{REQUEST_FILENAME} !-f // if requested file exist inside public folder, run it
+  RewriteRule  ^(.+)$ index1.php?url=$1 [QSA,L] // if requested file doesnt exist inside public folder, run root_file index1.php
+</IfModule>

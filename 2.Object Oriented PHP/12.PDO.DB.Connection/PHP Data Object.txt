@@ -1,0 +1,88 @@
+Is PDO interface or Class?
+The PDO class : Represents a connection between PHP and a database server.
+<!-- database connection using PDO IN OOP -->
+
+<?php   
+        $conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+        // 1. PDO() is standard predefined class in php 
+        // 3. $conn is object instanciated of the PDO() class
+        // 2. new is keyword
+?>
+
+<?php 
+    try {
+         $conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+        }catch(PDOException $e){
+	     echo "Connection Failed : ".$e->getMessage();
+	   }
+?>
+
+$conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+$query = $conn->query("INSERT INTO table1(name,age) VALUES('amir',21)");
+if($query){
+echo 'Successfully data inserted';
+}
+
+$conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+$query = $conn->prepare("INSERT INTO table1(name,age) VALUES(?,?)");
+$query->execute(['amir',21]); OR $query->execute(array('amir',21));
+
+1.
+$conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+$query = $conn->query("INSERT INTO table1(name,age) VALUES('amir',21)");
+
+2.
+$conn = new PDO("mysql:host=localhost; dbname=php", "root", "");
+$query = $conn->prepare("INSERT INTO table1(name,age) VALUES(?,?)");
+$query->execute(array('amir',21));
+
+3.
+$query = $conn->prepare("SELECT * FROM users");
+$query->execute();
+
+4.
+$query = $conn->prepare("SELECT * FROM users");
+$query->execute();
+if($query){
+   echo $query->rowCount();
+}
+
+
+5.
+$query = $conn->query("SELECT * FROM users");
+if($query){
+   $rows = $query->fetchAll(PDO::FETCH_OBJ);
+   foreach($rows as $records):
+       echo $records->name,'<br>';
+       echo $records->age,'<br>';
+   endforeach;
+}
+
+
+6.
+$query = $conn->prepare("SELECT * FROM users WHERE name=? ");
+$query->execute([21]);
+if($query){
+   $row = $query->fetch(PDO::FETCH_OBJ);
+   echo $row->name;
+}
+
+
+7.
+$query = $conn->prepare("UPDATE users SET name=?  WHERE age=?");
+$query->execute(['SimbA',21]);
+if($query){
+   echo 'Succefully Updated Name !';
+}
+
+
+
+8.
+$query = $conn->prepare("DELETE FROM users WHERE age=?");
+$query->execute([21]);
+if($query){
+   echo 'Succefully Deleted row_record !';
+}
+
+
+

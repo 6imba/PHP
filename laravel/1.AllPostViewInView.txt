@@ -1,0 +1,65 @@
+in PagesController.php
+
+ public function getIndex(){
+        return view('pages/index');
+    }
+
+into 
+
+
+public function getIndex(){
+        $all_posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+        return view('pages/index')->with('allposts', $all_posts);;
+    }
+
+
+In resources/view/pages/index.blade.php
+
+	<div class="col-md-8"> <!-- column  1   -->
+          <div class="post">
+            <h3>Post Title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, ab consequuntur veritatis vitae magni dolor sequi libero consectetur at corrupti iusto, ut voluptates necessitatibus excepturi accusamus numquam modi inventore voluptatum.</p>
+            <a href="" class="btn btn-primary">Read More</a>
+           </div>
+	</div>
+
+into 
+
+	<div class="col-md-8">
+
+            <!-- column  1   -->
+            @foreach ($allposts as $post)
+                <div class="post">
+                    <h3> {{ $post->title }} </h3>
+                    <p> {{ $post->description }} </p>
+                    <a href="" class="btn btn-primary">Read More</a>
+                </div>
+                <hr>
+            @endforeach
+
+        </div>
+
+into 
+
+        <div class="col-md-8">
+
+            <!-- column  1   -->
+            @foreach ($allposts as $post)
+                <div class="post">
+                    <h3> {{ $post->title }} </h3>
+                    <p>{{ substr($post->description, 0 ,150) }} {{ strlen($post->description)>150 ? "...Read More" : "" }} </p>
+                    <a href="" class="btn btn-primary">Read More</a>
+                </div>
+                <hr>
+            @endforeach
+
+        </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{-- <a href="{{ route('posts.index') }}" class="btn btn-light btn-sm">Show All Posts</a> --}} //why not this
+                        {!! Html::linkRoute('posts.index', 'Show All Posts', [], ['class' => 'btn btn-default btn-sm btn-block']) !!}
+                    </div>
+                </div>

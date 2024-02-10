@@ -1,0 +1,208 @@
+http://www.java2s.com/Tutorials/PHP/Function_Reference/MySQLi_Functions/mysqli_stmt_init.htm
+
+
+
+CREATE TABLE logintable
+(
+	Uid int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    UidName TINYTEXT NOT NULL,
+    UidEmail TINYTEXT NOT NULL,
+    UidPassword LONGTEXT NOT NULL
+);
+
+
+isset funtion ==> https://www.w3schools.com/php/phptryit.asp?filename=tryphp_func_var_isset
+empty() ==> phpfunction that check what ever we put inside parentesis(...) is empty... 
+24087810
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$a;
+$b=0;
+$c=12;
+
+//Return Type:	Boolean
+//only true will be echo/printed.....just think 
+
+// True because $a is empty
+if (empty($a)) {
+  echo "Variable 'a' is empty.<br>";
+}
+// True because $b is empty
+if (empty($b)) {
+  echo "Variable 'b' is empty.<br>";
+}
+// False because $c is not empty
+if (empty($c)) {
+  echo "Variable 'c' is empty.<br>";
+}
+
+// Flase because $a is set
+if (isset($a)) {
+  echo "Variable 'a' is set.<br>";//.infront of <br> is fullstop...
+}
+// True because $a is not set
+if (!isset($a)) {
+  echo "Variable 'a' is not set.<br>";
+}
+// True because $b is set
+if (isset($b)) {
+  echo "Variable 'b' is set as "."$b".".<br>";//.infront of <br> is fullstop...
+}
+// True because $c is set
+if (isset($c)) {
+  echo "Variable 'c' is set as "."$c"."<br>";
+}
+?>
+
+</body>
+</html>
+
+
+header() ==> function in php that helps to navigates from one page to another page..
+changer location/header location....
+header(string:'Location:https://www.youtube.com/');
+
+https://www.youtube.com/watch?v=7yuGW9poC6A
+https://www.youtube.com/watch?v=RZR2KqVQV-c&t=32s
+
+<?php
+header('Location:https://www.youtube.com');
+?>
+
+$loc='https://www.youtube.com';
+header(string:'Location:'.$loc);
+exit;
+ 
+function hey($a)
+{
+	header("Location:".$a);
+}
+hey('address to store in $a');
+//you can just call function
+
+header("refresh:5;url=********");
+
+login : https://www.youtube.com/watch?v=arqv2YVp_3E
+
+https://www.youtube.com/watch?v=In5NBIRfMrQ
+
+
+
+email validation ==> http://softwaretesterfriend.com/manual-testing/valid-invalid-email-address-format-validation/
+
+
+filter_var() ==> PHP function to filters a variable with the help of a specified filter
+		 validate and sanitize a data such as email id, IP address etc
+syntax:
+filter_var($variable,filter)
+filter_var(variable to be filtered ,specified filter)
+specified filter ==>  FILTER_VALIDATE_EMAIL,FILTER_SANITIZE_URL etc==>methods ==>way we want to check error
+https://www.stechies.com/php-filtervar/
+Syntax :-
+filter_var(var, filtername, options)
+
+
+
+// Escape special characters, if any that can be used in an SQL statement
+$firstname = mysqli_real_escape_string($con, $_POST['firstname']);
+
+
+
+
+
+
+preg_match is php function that cheack if string variable is in correct pattern or not
+  
+https://www.youtube.com/watch?v=I4JYwRIjX6c&list=PL0eyrZgxdwhwBToawjm9faF1ixePexft-&index=40
+
+mysqli_stmt_init($conn) ==> php function that clears all the previous result on the DB connectionand initialize the statement.. for prepare   
+
+<?php
+$con=mysqli_connect("localhost","my_user","my_password","my_db");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
+$city="Sandnes";
+
+// Create a prepared statement
+$stmt=mysqli_stmt_init($con);
+
+if (mysqli_stmt_prepare($stmt,"SELECT District FROM City WHERE Name=?"))
+  {
+
+  // Bind parameters
+  mysqli_stmt_bind_param($stmt,"s",$city);
+
+  // Execute query
+  mysqli_stmt_execute($stmt);
+
+  // Bind result variables
+  mysqli_stmt_bind_result($stmt,$district);
+
+  // Fetch value
+  mysqli_stmt_fetch($stmt);
+
+  printf("%s is in district %s",$city,$district);
+
+  // Close statement
+  mysqli_stmt_close($stmt);
+  }
+
+mysqli_close($con);
+?>
+
+
+mysqli_num_rows(relut set) ==> return number of rows in result set...
+
+
+difference between href and form action 
+input type and button type
+
+<a href="page2?field=value">contact form</a>
+
+header(header, replace, http_response_code)
+header("Location: Home.php?msg=Hello_World"
+header=Location
+replace=Home.php
+http_response_code=msg=Hello_World ===>> key=value&key=value&key=value i.e  ?error=emptyfields&UidName=".$name."&UidEmail="e)
+key=value& key=value& key=value correct
+key=value &key=value &key=value wrong
+
+
+error handling
+1.Simple "die()" statements
+2.Custom errors and error triggers
+3.Error reporting
+
+1st file
+else if ($password != $retpass)
+        {
+            header("Location:2.CreateAccount.php?error=RepeatPassword");
+            exit();
+        }
+
+2nd file(2.CreateAccount.php)
+<?php
+   if (isset($_GET['error']))
+   {
+      if($_GET['error']="apple")//only one = inside if condition???
+      {
+        echo "<p> Password not correct</p>";
+       }
+    }
+?>
+
+also
+header("Location:1.FrontLoginFile.php?error=Invalid Username");//you can have space in error name
+
+
+
+

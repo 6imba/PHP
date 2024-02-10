@@ -1,0 +1,4 @@
+posts/{post}      | posts.show     ==>  {!! Html::linkRoute('posts.show', 'Cancel', [$postinfo->id], ['class' => 'btn btn-danger btn-block']) !!} 
+posts/{post}      | posts.update   ==>  {!! Form::model ($postinfo, ['route'=>['posts.update', $postinfo->id], 'method'=>'PUT']) !!}
+posts/{post}      | posts.destroy  ==>  {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+posts/{post}/edit | posts.edit     ==>  http://127.0.0.1:8000/posts/1/edit

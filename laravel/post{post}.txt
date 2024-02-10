@@ -1,0 +1,6 @@
+Method      | URI               | Name
+| GET|HEAD  | posts/{post}      | posts.show
+| GET|HEAD  | posts/1     | posts.show
+| GET|HEAD  | posts/id_of_post      | posts.show
+| GET|HEAD  | http://127.0.0.1:8000/posts/1     | posts.show
+ 

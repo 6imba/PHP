@@ -1,0 +1,27 @@
+we have got two files (index1.html and index2.html)
+we have Directoryindex index1.html which open index1.html as default file 
+but what if we have Directoryindex index3.html 
+As we dont have any file called as index3.html it wont have any default file to open so it just opens folder and shows us all the files/directories
+which is risky like user can see copy internal files
+so here comes use of Enable and Disable Directory with which we can protect our file
+
+Options -Indexes ------> For Localhost
+Options +Indexes ------> For Liveserver like Cpannel
+
+You see : 
+Directoryindex index3.html
+ErrorDocument 404 /RootPHP/htaccess/2.ErrorDocument/error/error_404.html
+Options -Indexes
+
+Gives following errors: As we have Forbidden to access internal directory using ==> Options -Indexes
+Access forbidden!
+You don't have permission to access the requested directory. There is either no index document or the directory is read-protected.
+
+If you think this is a server error, please contact the webmaster.
+
+Error 403
+localhost
+Apache/2.4.46 (Win64) OpenSSL/1.1
+
+
+We can also create and redirect currernt error page to user frienldy  403 error page.

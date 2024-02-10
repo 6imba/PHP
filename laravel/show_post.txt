@@ -1,0 +1,127 @@
+In PostController :
+
+public function show($id)//id of a post to be displayed //find the view with this given id number and show/display it to the user
+    {
+        $postvar = Post::find($id); // find a post using primary id of that  and store all post_info in variable called as $postvar
+        return view('posts.show')->with('postinfo', $postvar); //redirect to view/posts/show.blade.php and also pass post_info hold by $postvar (object/varriable) to this view through a name that we use to call post info in view which in this case is 'postinfo'. We can do all these using with command
+        // return view_page->with('name_to_call_post_information', post_information);
+        // return view('posts.show') ==> render the view
+        // ->with('postinfo', $postvar); pass variable called postinfo and set variable_postinfo equal to variable_$postvar which holds all post data
+        // return view('posts.show')->withPost($postvar); //not working
+    }
+
+In show.blade.php
+
+@section('content')
+    <h1>{{ $postinfo->title }}</h1> {{-- here $postinfo is a variable holding post_info(i.e : id,title,decription : cloumn_name) , therefore $postinfo->title will display title of post--}}
+    <p class="lead"> {{ $postinfo->description}} </p> {{-- here $postinfo is a variable holding post_info(i.e : id,title,decription : cloumn_name) , therefore $postinfo->description will display description body of post --}}
+@endsection
+
+
+http://127.0.0.1:8000/posts/1
+http://127.0.0.1:8000/posts/2
+http://127.0.0.1:8000/posts/7
+http://127.0.0.1:8000/posts/5
+
+posts loccation url with thier respective id(primary key)
+
+create_post -> save_to_database -> show_created_post
+http://127.0.0.1:8000/posts/create -> save_to_database -> http://127.0.0.1:8000/posts/12
+
+
+#create_post
+1. http://127.0.0.1:8000/posts/create ==> URI  
+                   Method    | URI               | Name          | Action
+      route_list : GET|HEAD  | posts/create      | posts.create  | App\Http\Controllers\PostController@create
+
+ 2. web.php => Route::resource('posts', 'App\Http\Controllers\PostController');  ==> route toward Action
+
+ 3. PostController.php => Action
+	public function create() ==> Name (method_name)
+   	 { 
+       	 return view('posts.create');
+   	 }
+ 4. resources/views/posts/create.blade.php  
+	enter all form fields
+	click submit button
+	then form text field data is route to the store method of PostController class
+	i.e : 'route' => 'posts.store'
+	{!! Form::open(['route' => 'posts.store', 'data-parsley-validate' => '']) !!}
+
+#save_to_database
+ 5. public function store(Request $request){}
+	a.) here form validation is done
+	    $this->validate($request, array(
+                'title' => 'required|max:255', 
+                'description' => 'required'
+            ));
+
+	b.) here new object of class Post(Model_component_of_MVC) is intanciated
+	    $post =new Post;
+
+	c.) here requested data submited from create form is targeted into respective colume of table
+	    $post->title = $request->title;   
+            $post->description = $request->description;  
+
+            // object_of_Post_class -> table_column_name = http_request_variable_submitted from form {{Form::text('description1/title1'))}}
+	    //$post->title = $request->title1;
+ 	    // column_name = form_input_text_name
+            //$post->title = $request->title1;   // {{Form::text('title1'))}}
+            //$post->description = $request->description1;  // {{Form::text('description1'))}}
+
+	d.) here targeted is saved into respective colume of table
+	    $post->save();
+
+	e.) here targeted is saved into respective colume of table
+	    $post->save();
+
+
+#show_created_post
+
+	f.) here session_variable succes is created holding value as 'The blog post was sucessfully saved !' after the succesfully insertion of post data into database
+	    $request->session()->flash('success', 'The blog post was sucessfully saved !');
+		//session() ==> session class 
+		//flash() ==> method that allow session variable exist only instance one request and as soon as another request delete it. flask takes two parameters i.e flask ('key', 'value')
+		//'success' ==> session_flask_variable/key
+		//'The blog post was sucessfully saved !' ==> value of session_flask_variable/key
+		 some other example $request->session()->regenerate();
+				    $request->session()->invalidate();
+
+	g.) here now redirect in another_page/file (resources/view/posts/show.blade.php) from current file along with post_id
+	    return redirect()->route('posts.show', $post->id);
+
+	    		 Method    | URI              		     | Name          | Action
+            route_list : GET|HEAD  | posts/{post}      		     | posts.show    | App\Http\Controllers\PostController@show
+            route_list : GET|HEAD  | posts.show'/{$post->id}         | posts.show    | App\Http\Controllers\PostController@show
+	    route_list : GET|HEAD  | http://127.0.0.1:8000/posts/12  | posts.show    | App\Http\Controllers\PostController@show
+		here, // {$post->id}  = object_of_Post_class -> table_column_name
+
+
+ 6. resources/view/posts/show.blade.php 
+    resources/view/main.blade.php 
+    resources/view/partials/_messages.blade.php 
+
+Inside _messages.blade.php : 
+
+	//alert apper in head
+	@if (Session::has('success')) // check if session has any key as success or  not
+            <div class="alert alert-success" role="alert">
+                <strong>Success : </strong>{{ Session::get('success') }}  // echo value hold by session_key(success) in alert box
+            </div>
+        @endif
+
+	// if error occur it apper in head
+	@if (count($errors)>0) // counts if any error occured while filling form
+	    <div class="alert alert-danger" role="alert">
+                <strong>Errors : </strong>
+                <ul>
+                    @foreach ($errors->all() as $error) // $errors->all() means all error that occured $errors is $error_object
+                        <li>{{ $error }}</li>
+                    @endforeach
+               </ul>
+           </div> 
+       @endif
+    
+note before working with session there comes middleware
+
+finally output show.blade.php 

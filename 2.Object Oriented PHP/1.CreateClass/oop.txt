@@ -1,0 +1,35 @@
+OBJECT ORIENTED PROGRAMMING:
+
+Class is like a blueprint which defines all the methods,properties that the objects are going to have but doesnt actually gives any data to object.Simply Class is just a blueprint which hold how our object is going to look like.
+In other hand an object is the instanciated version of a class.Object is specific version of class which has all the extra information filled in such as different values for the property and where all the methods are going to be returned.
+
+Here, if you want to see it in a real life case:
+Compare class to blueprint of a house. Generally Blueprint defines the how our house is going to look like likewise class defines the structure of code. But blueprint of house does not tell us what color our house, furniture is goona be in that house
+We need different objects to give different values to class.
+Here simply, 
+1.House is Object
+2.Blueprint(naksa) is Class
+3.color of house is Functional Value of object.
+autai naksa vako dherai ghar tara fharak color.
+
+OOP php
+One Class One File :
+Controller class inside Controller file : Controller controls the input from the users when user feeds data to webside.
+Model class inside Module file : Module does nothing but connect and query  to database 
+View class inside View file : View page/file goes insdie database and grabs data and shows its to user inside the websites.
+
+How OOP Php works ? ==> Design patter in php : MVC model (Model, View & Controller)
+MVC model has 3 different peoples/ classes/ files who has their own task.
+Company_Secrets ==> Database
+CEO ==> Module : has all data : query database
+Buyer ==> Controller : give request
+Saler ==> View : provide data
+MVC model is here to make easier when work with other people or group.
+
+
+
+
+
+
+In-Built funtion in oop php :
+var_dump($object);

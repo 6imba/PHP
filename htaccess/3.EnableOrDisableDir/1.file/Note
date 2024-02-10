@@ -1,0 +1,7 @@
+your current url is : http://localhost/RootPHP/htaccess/2.ErrorDocument/1.file/
+try : http://localhost/RootPHP/htaccess/2.ErrorDocument/1.file/apple.html
+it will give error 404 and open file 'error_404.html'
+
+Error 404 :
+The HTTP 404 Not Found client error response code indicates that the server can't find the requested resource. Links that lead to a 404 page
+ are often called broken or dead links and can be subject to link rot.

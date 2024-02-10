@@ -1,0 +1,7 @@
+calling static_property/static_method outside class ==> class_name::$static_property_name;
+calling static_property/static_method of the same/current class, inside/within same class ==> self::$static_property_name;
+calling static_property/static_method of the parent class, inside base/child class ==> parent::$static_property_name;
+calling static_property/static_method of the parent class, outside base/child class in child_class_file ==> parent_class_name::$static_property_name;
+
+calling normal_class_property inside same class ==> $this->property;
+calling static_class_property inside same class ==> self:: $property;

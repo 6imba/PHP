@@ -1,0 +1,64 @@
+Content Section
+{
+
+main :
+@yield('content') 
+
+index:
+@extends('main')
+@section('content')
+	//html code
+@endsection
+
+}
+
+
+
+
+
+Css and Js Section
+{
+
+main :
+@yield('style') 
+@yield('content') 
+@yield('javascript') 
+
+index:
+@extends('main')
+
+@section('style')
+	<link rel="***" href="***">
+@endsection
+
+@section('content')
+	//html code
+@endsection
+
+@section('javascript')
+	<script src="***"></script>
+@endsection
+
+}
+
+
+
+
+
+
+Title Section
+{
+main :
+<title>Laravel Blog @yield('title') </title>
+
+index
+@extends('main')
+
+@section('title','| Home') 
+
+contact
+@section('title','| Contact') 
+
+about
+@section('title','| About') 
+}
